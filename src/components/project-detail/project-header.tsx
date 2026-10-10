@@ -27,7 +27,6 @@ export function ProjectHeader({ project }: { project: Project }) {
           <dt className="text-muted">Status</dt>
           <dd className="flex flex-wrap items-center gap-x-2">
             <StatusLabel status={project.status} />
-            {project.statusNote ? <span className="text-muted">({project.statusNote})</span> : null}
           </dd>
         </div>
         <div className="flex gap-2">
@@ -35,6 +34,7 @@ export function ProjectHeader({ project }: { project: Project }) {
           <dd>{project.role}</dd>
         </div>
       </dl>
+      {project.statusNote ? <p className="mt-3 text-sm text-muted">{project.statusNote}</p> : null}
       <ProjectLinks project={project} showDetails={false} className="mt-8 justify-center" />
     </header>
   );

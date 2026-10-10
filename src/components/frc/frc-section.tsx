@@ -4,7 +4,7 @@ import { TextLink } from "@/components/ui/text-link";
 const areas = [
   {
     title: "Scouting",
-    body: "The app scouts use in the stands to record every robot in every match, built for tablets and for venue networks that drop out.",
+    body: "The app scouts use in the stands to record every robot in every match, with a local-first database and the Toaster, a switch-and-LTE box, keeping the tablets in sync.",
   },
   {
     title: "Strategy tooling",
@@ -28,11 +28,11 @@ export function FrcSection() {
   return (
     <Section
       id="frc"
-      title="Software for FRC Team 610"
+      title="On the FRC team"
       intro={
         <p>
-          I work on the software side of FRC Team 610, the Crescent Coyotes. Most of it is about getting good data
-          during an event and turning it into decisions. The details are in the{" "}
+          I work on the software side of FRC Team 610, the Crescent Coyotes: tools for getting good data during an event
+          and turning it into decisions. The details are in the{" "}
           <TextLink href="/projects/scouting-app-2026">2026 scouting app</TextLink> and{" "}
           <TextLink href="/projects/scouting-web-2027">2027 scouting web</TextLink> write-ups.
         </p>

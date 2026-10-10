@@ -15,8 +15,8 @@ export function WorkSection() {
       title="Things I've built"
       intro={
         <p>
-          Most of this is software for FRC Team 610, built for scouts and strategists to use at competitions. The rest
-          is independent work: a benchmark, a developer tool, and a few smaller projects.
+          Scouting and design tools for FRC Team 610, a performance benchmark, a developer tool, and a few smaller
+          projects, from mobile apps to command-line utilities.
         </p>
       }
     >

@@ -22,8 +22,8 @@ export function Hero() {
           Hi, I&apos;m {site.shortName}.
         </h1>
         <p className="enter [--i:1] mt-8 max-w-2xl text-xl leading-snug text-balance text-muted sm:text-2xl">
-          I&apos;m a student developer building full-stack software, robotics tools, and systems that solve real
-          problems, from FRC Team 610&apos;s scouting tablets to the web.
+          I&apos;m a student developer building full-stack software, robotics tools, and developer tooling, from mobile
+          apps and web dashboards to command-line utilities.
         </p>
 
         <div className="enter [--i:2] mt-10 flex flex-wrap justify-center gap-3">

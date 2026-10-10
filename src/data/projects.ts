@@ -30,9 +30,9 @@ export const projects: Project[] = [
     ],
     role: "One of the main developers on a shared team codebase",
     highlights: [
-      "Submissions are written to a local Couchbase Lite database first, then replicated continuously in both directions through Sync Gateway, so scouting keeps working when the venue network doesn't.",
+      "Submissions are written to a local Couchbase Lite database first, then replicated in both directions through Sync Gateway. The team brings its own network, the Toaster, a custom box with a network switch and a cellular LTE router that tablets reach wirelessly or over Ethernet.",
       "A five-step match flow (start, auto, teleop, review, human player), with autonomous paths drawn by hand on an image of the field.",
-      "Strategy tools built on the synced data: multi-team comparison, a third-robot selector, match plans with climb estimates and role suggestions, and a drag-and-drop picklist.",
+      "Strategy tools built on the synced data: multi-team comparison, a third-robot selector, a drag-and-drop picklist, and a match predictor that picked the winning alliance 84.7% of the time at the 2026 Ontario Provincial Championships (Technology Division).",
       "Team lists, match schedules, and rankings pulled from The Blue Alliance API.",
     ],
     sourceNote: "Private team repository",
@@ -45,8 +45,12 @@ export const projects: Project[] = [
         },
         { label: "Couchbase Lite", detail: "Local write, works offline" },
         {
+          label: "The Toaster",
+          detail: "Network switch and LTE router, wired or wireless",
+        },
+        {
           label: "Sync Gateway",
-          detail: "Continuous push and pull replication",
+          detail: "Push and pull replication to every tablet",
         },
         {
           label: "Analysis tabs",
@@ -64,7 +68,7 @@ export const projects: Project[] = [
         "Every tablet writes to its own local database and syncs with the others through Couchbase Sync Gateway. The same app then turns that data into the views the strategy side uses during an event: per-team stats, sortable averages with a Day 1 / Day 2 split, box plots, match planning tools, scout coverage, and a picklist board for alliance selection.",
       ],
       problem: [
-        "Every qualification match has six robots on the field, and by alliance selection the team needs trustworthy data on all of them. That data has to be entered quickly by scouts watching a live match, it has to survive unreliable venue networks, and it has to be usable during the event rather than after it.",
+        "Every qualification match has six robots on the field, and by alliance selection the team needs trustworthy data on all of them. That data has to be entered quickly by scouts watching a live match, it has to keep flowing without depending on whatever connection a venue offers, and it has to be usable during the event rather than after it.",
       ],
       role: [
         "Strategy tools: the third-robot selector, multi-team comparison and match review, and the match planning view.",
@@ -79,11 +83,12 @@ export const projects: Project[] = [
         "A service layer sits between the UI and the database: couchbase.ts handles initialization, replication, and document reads and writes; aggregateData.ts recomputes a team's rollups whenever a match for that team is submitted; matchPlanningUtils.ts holds the climb estimates and role generation used by match planning.",
         "Couchbase Lite is a native module, so the Android app runs as an Expo development build rather than in Expo Go. For the web build, a couchbase.web.ts file, which Metro picks over couchbase.ts on web, talks to Sync Gateway's REST API with stale-while-revalidate caching.",
         "The navigation adapts to the platform: a bottom tab bar on Android tablets, a resizable sidebar on wide web screens.",
+        "The app runs on 8-inch Amazon Fire HD tablets, so the interface was tuned for a small screen. Twelve scouts, paired one junior with one senior, work short shifts of six to eight matches, each watching a single robot.",
       ],
       challenges: [
         {
-          title: "Data entry that can't depend on the network",
-          body: "Competition Wi-Fi is not something to rely on. Writing locally first and letting the replicator push and pull in the background means a scout can always submit, and other devices catch up once they can reach Sync Gateway.",
+          title: "A network the team brings with it",
+          body: "Scouts can always submit because every write lands in the local database first. To keep tablets syncing, the team built the Toaster: a desktop network switch and a cellular LTE router in one box, powered from a wall outlet or a 12V FRC battery through an inverter. Tablets sync wirelessly or plug in over Ethernet, and the replicator pushes and pulls in the background on a 30-second heartbeat.",
         },
         {
           title: "Fixing data after it's submitted",
@@ -154,7 +159,7 @@ export const projects: Project[] = [
     },
     details: {
       overview: [
-        "A web platform for analysing Team 610's scouting data. It reads the documents the scouting app produces from Couchbase Sync Gateway and presents them as Teams, Averages, Box Plot, Strategy, and Coverage views.",
+        "A web platform for analyzing Team 610's scouting data. It reads the documents the scouting app produces from Couchbase Sync Gateway and presents them as Teams, Averages, Box Plot, Strategy, and Coverage views.",
         "Everyone signs in with Google or Apple first. New accounts wait for approval, and what each person can see and do depends on their role. Mentors and the Owner get an operations panel covering system health, the realtime feed, sync status, API metrics, users, sessions, and an audit log.",
       ],
       problem: [
@@ -420,7 +425,7 @@ export const projects: Project[] = [
         },
         {
           title: "Testing against real repositories",
-          body: "The tests build throwaway git repositories, so they exercise the same git behaviour users see. CI runs on Linux, macOS, and Windows to catch path and process differences.",
+          body: "The tests build throwaway git repositories, so they exercise the same git behavior users see. CI runs on Linux, macOS, and Windows to catch path and process differences.",
         },
       ],
     },

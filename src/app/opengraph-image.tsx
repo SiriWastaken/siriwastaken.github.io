@@ -24,7 +24,7 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 24, color: "#a1a1aa" }}>
           <div style={{ width: 12, height: 12, borderRadius: 6, background: "#7aa8ff" }} />
-          Student developer · FRC Team 610
+          Student developer
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 92, fontWeight: 700, letterSpacing: -3 }}>{site.name}</div>

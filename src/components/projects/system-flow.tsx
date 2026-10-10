@@ -8,7 +8,7 @@ import type { ProjectFlow } from "@/data/types";
 export function SystemFlow({ flow }: { flow: ProjectFlow }) {
   return (
     <figure className="bg-surface px-5 py-6 sm:px-8 sm:py-8">
-      <ol className="grid md:grid-cols-4">
+      <ol className="grid md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
         {flow.steps.map((step, index) => (
           <li
             key={step.label}
