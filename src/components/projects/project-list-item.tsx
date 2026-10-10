@@ -13,7 +13,7 @@ export function ProjectListItem({ project }: { project: Project }) {
 
   return (
     <li>
-      <article aria-labelledby={titleId} className="grid gap-4 border-t border-rule py-8 md:grid-cols-12 md:gap-x-8">
+      <article aria-labelledby={titleId} className="reveal card-fx grid gap-4 border-t border-rule py-8 md:grid-cols-12 md:gap-x-8">
         <div className="flex items-start gap-4 md:col-span-3">
           {hero ? (
             <Image
@@ -21,7 +21,7 @@ export function ProjectListItem({ project }: { project: Project }) {
               alt=""
               width={48}
               height={48}
-              className="size-12 shrink-0 border border-rule bg-white object-contain"
+              className="size-12 shrink-0 border border-rule object-cover object-top"
             />
           ) : null}
           <div>

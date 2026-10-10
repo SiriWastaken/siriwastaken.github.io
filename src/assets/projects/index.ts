@@ -1,10 +1,12 @@
 import { showImagePlaceholders } from "./placeholders";
 import type { ImageSlot, ProjectAssets } from "./types";
-import matchSim from "./match-sim";
+import claudeium from "./claudeium";
+import designApp from "./design-app";
 import millionaire from "./millionaire";
+import scoutingBenchmark from "./scouting-benchmark";
 import scoutingApp2026 from "./scouting-app-2026";
 import scoutingWeb2027 from "./scouting-web-2027";
-import wiiFitScale from "./wii-fit-scale";
+import sift from "./sift";
 
 export type { ImageSlot, ProjectAssets, ProjectImage } from "./types";
 
@@ -15,9 +17,11 @@ export type { ImageSlot, ProjectAssets, ProjectImage } from "./types";
 const registry: Record<string, ProjectAssets> = {
   "scouting-app-2026": scoutingApp2026,
   "scouting-web-2027": scoutingWeb2027,
-  "wii-fit-scale": wiiFitScale,
   millionaire,
-  "match-sim": matchSim,
+  claudeium,
+  "design-app": designApp,
+  "scouting-benchmark": scoutingBenchmark,
+  sift,
 };
 
 export type ResolvedProjectAssets = ProjectAssets & {

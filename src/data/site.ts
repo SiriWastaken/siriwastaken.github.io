@@ -11,15 +11,11 @@ export const site = {
 } as const;
 
 /**
- * Canonical site URL. Set NEXT_PUBLIC_SITE_URL once the site has a domain;
- * on Vercel the production URL is picked up automatically.
+ * Canonical site URL: the GitHub Pages user site. Override with NEXT_PUBLIC_SITE_URL;
+ * `next dev` falls back to localhost.
  */
 export function getSiteUrl(): URL {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return new URL(explicit);
-
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  if (vercel) return new URL(`https://${vercel}`);
-
-  return new URL("http://localhost:3000");
+  return new URL(process.env.NODE_ENV === "production" ? "https://siriwastaken.github.io" : "http://localhost:3000");
 }

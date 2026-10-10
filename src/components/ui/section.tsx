@@ -18,7 +18,7 @@ export function Section({ id, index, label, title, intro, children }: SectionPro
   return (
     <section id={id} aria-labelledby={headingId} className="py-12 sm:py-16">
       <Container>
-        <div className="grid gap-y-4 border-t border-rule-strong pt-6 md:grid-cols-12 md:gap-x-8">
+        <div className="reveal grid gap-y-4 border-t border-rule-strong pt-6 md:grid-cols-12 md:gap-x-8">
           <p className="font-mono text-xs tracking-wide text-muted uppercase md:col-span-3">
             <span className="text-accent">{index}</span>
             <span aria-hidden="true"> / </span>

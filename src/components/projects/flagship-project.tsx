@@ -16,7 +16,7 @@ export function FlagshipProject({ project, position }: { project: Project; posit
   const titleId = `project-${project.slug}`;
 
   return (
-    <article aria-labelledby={titleId} className="grid gap-8 border-t border-rule py-12 first:border-t-0 first:pt-0 md:grid-cols-12 md:gap-x-8">
+    <article aria-labelledby={titleId} className="reveal card-fx grid gap-8 border-t border-rule py-12 first:border-t-0 first:pt-0 md:grid-cols-12 md:gap-x-8">
       <div className="md:col-span-3">
         <p aria-hidden="true" className="font-mono text-5xl font-medium tracking-tight text-rule-strong">
           {String(position).padStart(2, "0")}

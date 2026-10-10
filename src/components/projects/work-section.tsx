@@ -26,7 +26,7 @@ export function WorkSection() {
       intro={
         <p>
           Most of this is software for FRC Team 610, built for scouts and strategists to use at competitions. The rest is
-          independent work: a hardware experiment and a few smaller projects.
+          independent work: a benchmark, a developer tool, and a few smaller projects.
         </p>
       }
     >

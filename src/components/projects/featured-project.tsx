@@ -14,7 +14,7 @@ export function FeaturedProject({ project }: { project: Project }) {
   const titleId = `project-${project.slug}`;
 
   return (
-    <article aria-labelledby={titleId} className="flex flex-col border-t border-rule pt-6">
+    <article aria-labelledby={titleId} className="reveal card-fx flex flex-col border-t border-rule pt-6">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 font-mono text-xs text-muted">
         <span>
           {project.category} · {project.year}

@@ -1,5 +1,11 @@
 import type { ProjectAssets } from "../types";
+import teams from "./hero/teams-dashboard.png";
+import coverage from "./screenshots/coverage.png";
+import teamsDark from "./screenshots/teams-dark.png";
+import strategy from "./screenshots/strategy-head-to-head.png";
 
+// Screenshots come from the test bench's fake Sync Gateway and sample event, not real scouting data.
+//
 // To add an image: save it at the path in `file`, import it, add it to
 // hero/screenshots/diagrams with real alt text, and delete its slot below.
 //
@@ -7,20 +13,28 @@ import type { ProjectAssets } from "../types";
 //   screenshots: [{ src: averages, alt: "What the screenshot shows" }],
 
 const assets: ProjectAssets = {
+  hero: {
+    src: teams,
+    alt: "The Teams page: a team's averages, a scouted match, and the auto path viewer, with the Live updates on indicator",
+  },
+  screenshots: [
+    {
+      src: teamsDark,
+      alt: "The Teams page in dark mode with the team picker, averages, and auto path viewer",
+      caption: "Dark mode (sample event data).",
+    },
+    {
+      src: strategy,
+      alt: "Strategy page comparing two teams' averages side by side, with the leader in each row shaded",
+      caption: "Head to head (sample event data): two teams' averages side by side.",
+    },
+    {
+      src: coverage,
+      alt: "Coverage page showing teams with aggregates, observed matches, and which teams' records are ready",
+      caption: "Coverage (sample event data): which teams still need scouting.",
+    },
+  ],
   planned: [
-    {
-      kind: "hero",
-      file: "hero/teams-dashboard.png",
-      subject: "Teams page in a desktop browser with the \"Live updates on\" bar visible.",
-      aspect: "16/10",
-    },
-    {
-      kind: "screenshot",
-      file: "screenshots/team-detail.png",
-      subject: "One team's page: match log and card reports.",
-      caption: "A team's match log, updated live as scouts submit.",
-      aspect: "16/10",
-    },
     {
       kind: "screenshot",
       file: "screenshots/box-plot-board.png",

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   return {
     title: project.title,
     description: project.summary,
-    alternates: { canonical: `/projects/${project.slug}` },
+    alternates: { canonical: `/projects/${project.slug}/` },
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const next = withDetails[(withDetails.findIndex((p) => p.slug === project.slug) + 1) % withDetails.length];
 
   return (
-    <article>
+    <article className="enter">
       <Container>
         <ProjectHeader project={project} />
 

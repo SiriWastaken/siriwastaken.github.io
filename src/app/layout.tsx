@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Backdrop } from "@/components/backdrop/backdrop";
 import { SiteFooter } from "@/components/contact/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getSiteUrl, site } from "@/data/site";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <Backdrop />
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

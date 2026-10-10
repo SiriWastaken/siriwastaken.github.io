@@ -8,7 +8,7 @@ export const statusText: Record<ProjectStatus, string> = {
 };
 
 const markers: Record<ProjectStatus, string> = {
-  "in-development": "bg-accent",
+  "in-development": "bg-accent motion-safe:animate-[pulse-ring_1.8s_ease-out_infinite]",
   completed: "bg-ink",
   archived: "border border-muted",
   planned: "border border-dashed border-muted",

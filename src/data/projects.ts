@@ -39,12 +39,24 @@ export const projects: Project[] = [
     flow: {
       caption: "How a match gets from a scout's tablet to the strategy team",
       steps: [
-        { label: "Scout tablets", detail: "Six Android tablets, one robot each" },
+        {
+          label: "Scout tablets",
+          detail: "Six Android tablets, one robot each",
+        },
         { label: "Couchbase Lite", detail: "Local write, works offline" },
-        { label: "Sync Gateway", detail: "Continuous push and pull replication" },
-        { label: "Analysis tabs", detail: "Stats, averages, box plots, picklist" },
+        {
+          label: "Sync Gateway",
+          detail: "Continuous push and pull replication",
+        },
+        {
+          label: "Analysis tabs",
+          detail: "Stats, averages, box plots, picklist",
+        },
       ],
-      aside: { label: "The Blue Alliance API", detail: "Teams, schedules, rankings" },
+      aside: {
+        label: "The Blue Alliance API",
+        detail: "Teams, schedules, rankings",
+      },
     },
     details: {
       overview: [
@@ -121,12 +133,24 @@ export const projects: Project[] = [
     flow: {
       caption: "How a change in the scouting database reaches an open dashboard",
       steps: [
-        { label: "Sync Gateway", detail: "Scouting, pit, and aggregate documents" },
+        {
+          label: "Sync Gateway",
+          detail: "Scouting, pit, and aggregate documents",
+        },
         { label: "Changes feed", detail: "Server long-polls from a sequence" },
-        { label: "WebSocket relay", detail: "Session-checked, allow-listed fields" },
-        { label: "Dashboard", detail: "Merges by revision, resumes on reconnect" },
+        {
+          label: "WebSocket relay",
+          detail: "Session-checked, allow-listed fields",
+        },
+        {
+          label: "Dashboard",
+          detail: "Merges by revision, resumes on reconnect",
+        },
       ],
-      aside: { label: "Google / Apple sign-in", detail: "Accounts, sessions, five roles" },
+      aside: {
+        label: "Google / Apple sign-in",
+        detail: "Accounts, sessions, five roles",
+      },
     },
     details: {
       overview: [
@@ -142,7 +166,7 @@ export const projects: Project[] = [
       architecture: [
         "Next.js App Router. Everything behind sign-in sits in one route group with a shared sidebar shell. A proxy redirects signed-out visitors to the welcome page, and every page and API route re-checks the session on the server.",
         "A server-only repository reads aggregate and pit documents from Sync Gateway's REST API, with a 20-second snapshot cache. Accounts, sessions, and the audit log live in a separate Sync Gateway database, or in a local file during development.",
-        "Roles and permissions are defined in a single module, and API routes go through one guard that answers \"who is asking?\" for every request.",
+        'Roles and permissions are defined in a single module, and API routes go through one guard that answers "who is asking?" for every request.',
         "Live updates run on WebSockets. Locally, a small Node server handles the upgrade and hands everything else to Next.js; on Vercel, the same route uses Vercel's WebSocket support with Fluid Compute.",
       ],
       challenges: [
@@ -166,36 +190,50 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "wii-fit-scale",
-    title: "Wii Fit Scale",
+    slug: "claudeium",
+    title: "Claudeium",
     year: "2026",
-    category: "Hardware / software · Java",
+    category: "Developer tool · Claude Code plugin",
     status: "in-development",
-    statusNote: "v0.1: connecting and reading raw reports",
+    statusNote: "v0.2.0, not published yet",
     tier: "featured",
     summary:
-      "Talking to a Nintendo Wii Balance Board over HID from Java, the first step toward a standalone digital scale.",
-    technologies: ["Java", "OpenJDK 17", "hid4java", "JNA", "HID"],
+      "An execution and verification layer for AI-assisted development: a task ledger where nothing counts as done until a check has passed against the files it covers.",
+    technologies: ["JavaScript", "Node.js", "Claude Code plugin", "JSON"],
     role: "Sole developer",
     highlights: [
-      "Finds the Balance Board by Nintendo's vendor ID and the board's product ID, then opens it through hid4java, which uses JNA for native HID access.",
-      "Reads raw input reports and prints them as hex, so the format can be checked against the real hardware before any decoder is written.",
-      "The next step is decoding the board's four load-cell readings into a weight.",
+      "A task is verified only through a recorded passed check, and the evidence is tied to a fingerprint of the files it covers, so later edits mark it STALE.",
+      "Parallel work is limited to three tasks at once, and tasks that share files are refused, so workers can't overwrite each other.",
+      "Handoffs are versioned, validated snapshots another agent can resume from; the ledger uses atomic writes and a directory lock, and never overwrites a corrupt file.",
+      "The core uses only Node's standard library and is agent-agnostic; Claude Code is the first adapter. 36 tests pass.",
     ],
-    githubUrl: "https://github.com/SiriWastaken/Wii-Fit-Board",
+    sourceNote: "Not published yet",
     details: {
       overview: [
-        "A Java program that connects to a Wii Balance Board over HID. The long-term goal is a standalone digital scale: the board, a small computer, and a display, with no game console involved.",
+        "Claudeium is built around one principle: any compatible agent can contribute, every meaningful result is traceable, and completion needs evidence. It ships as a Claude Code plugin on top of a small platform-independent core, plus a portable AGENTS.md that any coding agent can follow.",
+        "A run investigates, proposes a plan with tasks, owned files, dependencies, and a verify command, waits for approval, then loops: a worker agent per task, then an independent verifier agent, then recorded evidence. It never commits or pushes.",
       ],
-      role: ["Solo project."],
+      problem: [
+        "When an AI agent says a task is done, nothing backs that up, and later edits can quietly invalidate it. Claudeium makes done mean something, with small enforced rules instead of a promise.",
+      ],
+      role: ["Solo project: the ledger core, the plugin's agents, skills and hooks, the tests, and the documentation."],
       architecture: [
-        "A WiiBoard class wraps the hardware: connect() looks up the device by vendor ID 0x057E and product ID 0x0306 and opens it; readReport() waits up to a second for an input report and returns only the bytes actually received; disconnect() closes the device and shuts down hid4java's services.",
-        "Main runs a read loop that prints every report in hex and always releases the device in a finally block, so the board isn't left open if the program exits.",
+        "The core is a command-line tool over a JSON ledger file, with no daemon, database, or server. Task states are pending, running, done, verified, failed, and blocked, and the core never executes plan commands itself, because model-written commands should go through the host's permission prompts.",
+        "A Stop hook stops a session from finishing with unfinished tasks. It deliberately fails open, so a broken guard can't trap a session.",
+        "The docs are explicit about what isn't done: evidence is model-reported by the verifier, file ownership is instructed rather than enforced at edit time, redaction is best-effort, and it has been exercised end to end only on a small task.",
       ],
       challenges: [
         {
-          title: "Reading before decoding",
-          body: "The board sends several kinds of reports. Instead of writing a decoder from documentation alone, v0.1 dumps raw reports so the decoder can be built against what the hardware actually sends.",
+          title: "Making evidence expire",
+          body: "A passing check is only meaningful for the files it ran against. Each check is bound to a content fingerprint of the task's owned files, so any later change shows the task as STALE until it is verified again.",
+        },
+        {
+          title: "Not trusting its own state",
+          body: "The ledger is schema-versioned, written atomically, and guarded by a lock. A corrupt ledger is reported rather than overwritten, and secrets in recorded output are redacted and truncated.",
+        },
+        {
+          title: "Parallelism without collisions",
+          body: "Tasks declare the files they own, and a directory counts as owning its contents. Batches must be file-disjoint, which is checked when a task starts.",
         },
       ],
     },
@@ -221,10 +259,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/SiriWastaken/Who-Wants-To-Be-a-Millionaire",
     details: {
       overview: [
-        "\"FINAL ANSWER?\" is a quiz game modelled on Who Wants to Be a Millionaire, built as my final project for ICS3U. You climb a 16-step money ladder, use lifelines, and decide whether to keep playing or walk away with what you have.",
+        '"FINAL ANSWER?" is a quiz game modelled on Who Wants to Be a Millionaire, built as my final project for ICS3U. You climb a 16-step money ladder, use lifelines, and decide whether to keep playing or walk away with what you have.',
         "It's a single-player desktop game in plain Java with no external libraries, 17 classes in all.",
       ],
-      role: ["Solo project, including the logo."],
+      role: ["Solo project."],
       architecture: [
         "GameSession holds the game state: the current question, winnings, safe points, the timer, and which lifelines are used. GameScreenRenderer draws everything, and GameScreenPanel handles input and coordinates the two.",
         "QuestionBank builds a deck of 16 questions of increasing difficulty and finds same-difficulty replacements for the Swap lifeline. QuestionParser reads the question CSV, including quoted values.",
@@ -243,22 +281,149 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "match-sim",
-    title: "610 Match Sim",
+    slug: "design-app",
+    title: "610 Design App",
     year: "2026",
-    category: "Simulation · Web",
+    category: "Full-stack web · FRC",
     status: "in-development",
-    statusNote: "Early version",
-    tier: "additional",
+    statusNote: "Replacing the team's spreadsheet and Drive folder",
+    tier: "flagship",
     summary:
-      "An early FRC match simulator: the browser renders the field while a TypeScript WebSocket server owns robot movement, game pieces, and match state.",
-    technologies: ["TypeScript", "Next.js", "WebSockets"],
+      "A mobile-first PWA for logging robot prototype tests with photos and video, then comparing iterations, with server-enforced roles and offline drafts.",
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Couchbase",
+      "Auth.js",
+      "Zod",
+      "S3 / R2",
+      "Vitest",
+      "Playwright",
+    ],
     role: "Sole developer",
     highlights: [
-      "Authoritative server running a fixed 60 Hz tick and broadcasting state snapshots.",
-      "Clients only send validated input; disconnecting releases a robot without stopping the match.",
+      "Every server action goes through one pipeline (authenticate, rate limit, validate, authorize, handler, audit), and permissions for five roles live in a single module.",
+      "Metric definitions are immutable versions, and each entry snapshots the definitions it used, so old seasons still render exactly as logged.",
+      "Photos and video upload straight from the browser to object storage through presigned URLs and are named automatically from season, subsystem, prototype, and iteration.",
+      "Entry drafts autosave to IndexedDB, and creates are idempotent so an offline retry can't duplicate an entry.",
     ],
-    githubUrl: "https://github.com/SiriWastaken/610-Match-Sim",
+    githubUrl: "https://github.com/SiriWastaken/610-Design-App",
+    details: {
+      overview: [
+        "A tool for Team 610's design process. Each test of a prototype is logged with its metrics, notes, and media, and later iterations can be compared against earlier ones.",
+        "It's built as a phone-first PWA, since tests happen next to the robot, with Google sign-in and a People panel where the owner assigns roles.",
+      ],
+      problem: [
+        "Test results lived in a spreadsheet, with photos and video in a separate Drive folder, so linking a result to its footage meant renaming files by hand. Here every entry, metric, note, and file is linked automatically and media is named for you.",
+      ],
+      role: [
+        "Everything in the repository: the app, the data layer, the permission model, the tests, and the user guide.",
+      ],
+      architecture: [
+        "Next.js App Router. Routes stay thin and call a per-feature service layer; the only code that talks to Couchbase is the repository layer, which uses parameterized SQL++ and key-value access. Every query is checked against the index file by a script that runs EXPLAIN.",
+        "Roles run viewer, logger, editor, admin, owner. The role in the session is only a hint: server code re-reads the user on each request, so deactivation and role changes apply immediately. Individual metric fields can carry their own edit lock that overrides the role default.",
+        "Media bytes go from the browser to S3-compatible storage; Couchbase stores only metadata. Reads use short-lived signed URLs and the bucket is never public.",
+      ],
+      challenges: [
+        {
+          title: "Old data that still renders",
+          body: "Editing a metric inserts a new version instead of changing the old one, and each entry stores a snapshot of the definitions it was logged against. Past seasons render without joins and never change under you.",
+        },
+        {
+          title: "Two people saving at once",
+          body: "Concurrent edits use compare-and-swap, and a new metric version is claimed with an atomic slot insert, so two simultaneous saves can't fork a metric's history.",
+        },
+        {
+          title: "Logging with a bad connection",
+          body: "Drafts are kept on the device and restored on return. Entry ids are generated on the client, which makes a retried create harmless.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "scouting-benchmark",
+    title: "Scouting App Benchmark: React Native vs Native Java",
+    shortTitle: "Scouting Benchmark",
+    year: "2026",
+    category: "Performance engineering · Android",
+    status: "completed",
+    statusNote: "Measured on one scouting tablet",
+    tier: "featured",
+    summary:
+      "A controlled benchmark of the scouting app against a native Java rewrite, run on the actual tablet to decide whether a rewrite would be worth it.",
+    technologies: ["React Native", "Java", "Android", "Couchbase Lite", "Python"],
+    role: "Sole developer",
+    highlights: [
+      "Both apps run the same scripted workload through a shared Java instrumentation harness that injects touches and records latency, frames, CPU, and memory.",
+      "Every run's final state is checked against a reference model, and runs with a wrong checksum, lost taps, or a debug build are excluded from the statistics.",
+      "On the Fire tablet, native Java was faster on taps (32 vs 75 ms median) and screen changes (55 vs 234 ms) and used far less CPU and memory; React Native had smoother frames under background load.",
+      "Reported with its limits: one tablet, three runs per cell, sync not tested.",
+    ],
+    githubUrl: "https://github.com/SiriWastaken/reactN-vs-Java-android-testbench",
+    details: {
+      overview: [
+        "The 2026 scouting app is React Native. This project asks, with repeatable measurements rather than opinion, whether a native Android rewrite would give a meaningful advantage in responsiveness, stability, or memory.",
+      ],
+      role: ["Solo project: both implementations of the workload, the harness, the analysis scripts, and the report."],
+      architecture: [
+        "Two independent apps implement the same state machine and persistence, one in React Native with Hermes and one in Java with Android Views. A shared instrumentation library injects the touches and samples CPU, memory, and frame times.",
+        "A Python reference implementation of the state machine produces golden checksums. Both apps' reducers are unit-tested against it, and every benchmark run compares its final state and database contents with the reference.",
+      ],
+      challenges: [
+        {
+          title: "Making the comparison fair",
+          body: "The instrument has to be identical for both apps, and the workload deterministic. The workload is generated from one spec into event files with expected checksums, so a difference in results can't come from a difference in input.",
+        },
+        {
+          title: "Catching a flaw in my own driver",
+          body: "A first set of tablet runs lost one React Native tap per cycle because of a defect in the test driver. The affected workloads were rerun after the fix and the earlier set kept separate, rather than blended in.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "sift",
+    title: "SIFT",
+    year: "2026",
+    category: "Developer tool · Java CLI",
+    status: "in-development",
+    tier: "additional",
+    summary:
+      "A command-line tool that inspects, health-checks, and diffs the project you're standing in, and reports `unknown` instead of guessing.",
+    technologies: ["Java", "Maven", "JUnit"],
+    role: "Sole developer",
+    highlights: [
+      "Four commands: inspect, check (runs the build and tests), doctor (config and repository problems, each with its evidence), and diff.",
+      "Runs only commands it knows are right for the detected Maven, Gradle, Node, or Python project, never reads commands from project files, and never goes through a shell.",
+      "Tests build throwaway git repositories, and CI runs on Linux, macOS, and Windows.",
+    ],
+    githubUrl: "https://github.com/SiriWastaken/sift",
+    details: {
+      overview: [
+        "SIFT answers four questions about the project you're standing in: what is it, does it look healthy, what might be wrong, and what did I change. It runs locally, needs no network and no accounts, and prints only what it can back with evidence.",
+      ],
+      problem: [
+        "Opening an unfamiliar repository means running git status, finding the build tool, guessing the test command, and checking whether the Java or lockfile setup is sane. SIFT does that routine in one place and never invents a command a project didn't ask for.",
+      ],
+      role: ["Solo project: the tool, its tests, the CI setup, and the documentation."],
+      architecture: [
+        "Detection reads marker files in the current directory (pom.xml, build.gradle, package.json, pyproject.toml) and declared dependencies, so framework and test framework come from evidence rather than guesses. A directory walk skips build output and dependency folders, never follows symlinks, and stops at 100,000 files.",
+        "check runs only the commands known to be right for the detected project, never reads commands from project files, and never goes through a shell. A failed build skips the tests, and each step has a 10 minute timeout.",
+        "doctor prints findings only, each with its evidence: conflict markers with file and line, a Java version newer than the runtime, tracked credential-looking files, missing lockfiles.",
+      ],
+      challenges: [
+        {
+          title: "Saying unknown instead of guessing",
+          body: "Anything SIFT can't identify is reported as unknown. That keeps its output trustworthy, but it means every detector has to prove what it claims from a marker file or a declared dependency.",
+        },
+        {
+          title: "Testing against real repositories",
+          body: "The tests build throwaway git repositories, so they exercise the same git behaviour users see. CI runs on Linux, macOS, and Windows to catch path and process differences.",
+        },
+      ],
+    },
   },
 ];
 

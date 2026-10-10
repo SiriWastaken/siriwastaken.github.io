@@ -1,4 +1,7 @@
 import type { ProjectAssets } from "../types";
+import autoDark from "./hero/auto-scouting-dark.png";
+import autoLight from "./screenshots/auto-scouting-light.png";
+import scoutHome from "./screenshots/scout-home-dark.png";
 
 // To add an image: save it at the path in `file`, import it, add it to
 // hero/screenshots/diagrams with real alt text, and delete its slot below.
@@ -6,21 +9,25 @@ import type { ProjectAssets } from "../types";
 //   import averages from "./screenshots/averages-day2.png";
 //   screenshots: [{ src: averages, alt: "What the screenshot shows" }],
 
+// Screenshots are the app's web build running on a tablet-sized viewport, not real scouting data.
 const assets: ProjectAssets = {
+  hero: {
+    src: autoDark,
+    alt: "The Auto scouting screen in dark mode: fuel scored and fed counters, an L1 hang selector, and the field image",
+  },
+  screenshots: [
+    {
+      src: scoutHome,
+      alt: "The scout home screen in dark mode with the 610 logo, scout name, and match and team pickers",
+      caption: "Starting a scouting session.",
+    },
+    {
+      src: autoLight,
+      alt: "The Auto scouting screen in light mode with counters filled in",
+      caption: "The same screen in light mode.",
+    },
+  ],
   planned: [
-    {
-      kind: "hero",
-      file: "hero/tablet-in-the-stands.jpg",
-      subject: "Photo: the app running on a scouting tablet in the stands during a real match, field visible behind it.",
-      aspect: "3/2",
-    },
-    {
-      kind: "screenshot",
-      file: "screenshots/auto-path-drawing.png",
-      subject: "Auto page with a robot's autonomous path drawn on the field image.",
-      caption: "Scouts trace each robot's autonomous path by hand on the field.",
-      aspect: "16/10",
-    },
     {
       kind: "screenshot",
       file: "screenshots/teleop-scoring.png",
