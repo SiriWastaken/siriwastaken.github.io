@@ -18,7 +18,7 @@ export function ProjectImage({ image, sizes, eager = false, className = "" }: Pr
         sizes={sizes}
         placeholder="blur"
         loading={eager ? "eager" : "lazy"}
-        className="h-auto w-full border border-rule motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_14px_32px_-14px_rgb(0_0_0/0.4)]"
+        className="h-auto w-full"
         style={{ maxWidth: image.src.width }}
       />
       {image.caption ? <figcaption className="mt-3 font-mono text-xs text-muted">{image.caption}</figcaption> : null}

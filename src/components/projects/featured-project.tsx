@@ -14,8 +14,8 @@ export function FeaturedProject({ project }: { project: Project }) {
   const titleId = `project-${project.slug}`;
 
   return (
-    <article aria-labelledby={titleId} className="reveal card-fx flex flex-col border-t border-rule pt-6">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 font-mono text-xs text-muted">
+    <article aria-labelledby={titleId} className="card reveal flex flex-col p-6 sm:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 font-mono text-xs text-muted">
         <span>
           {project.category} · {project.year}
         </span>
@@ -24,7 +24,7 @@ export function FeaturedProject({ project }: { project: Project }) {
         </span>
       </div>
 
-      <h4 id={titleId} className="mt-5 text-2xl font-semibold tracking-tight">
+      <h4 id={titleId} className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">
         {project.details ? (
           <Link href={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
             {project.title}
@@ -36,7 +36,9 @@ export function FeaturedProject({ project }: { project: Project }) {
       <p className="mt-3 leading-relaxed text-muted">{project.summary}</p>
 
       {hero ? (
-        <ProjectImage image={hero} sizes="(min-width: 768px) 45vw, 100vw" className="mt-6" />
+        <div className="mt-6 overflow-hidden rounded-2xl">
+          <ProjectImage image={hero} sizes="(min-width: 768px) 45vw, 100vw" />
+        </div>
       ) : heroSlot ? (
         <ImagePlaceholder slug={project.slug} slot={heroSlot} className="mt-6" />
       ) : null}

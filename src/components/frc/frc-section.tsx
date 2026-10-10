@@ -28,28 +28,24 @@ export function FrcSection() {
   return (
     <Section
       id="frc"
-      index="03"
-      label="FRC"
       title="Software for FRC Team 610"
       intro={
         <p>
-          I work on the software side of FRC Team 610, the Crescent Coyotes. Most of it is about getting good data during an
-          event and turning it into decisions. The details are in the{" "}
+          I work on the software side of FRC Team 610, the Crescent Coyotes. Most of it is about getting good data
+          during an event and turning it into decisions. The details are in the{" "}
           <TextLink href="/projects/scouting-app-2026">2026 scouting app</TextLink> and{" "}
           <TextLink href="/projects/scouting-web-2027">2027 scouting web</TextLink> write-ups.
         </p>
       }
     >
-      <div className="md:grid md:grid-cols-12 md:gap-x-8">
-        <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-2 md:col-span-9 md:col-start-4">
-          {areas.map((area) => (
-            <div key={area.title} className="border-t border-rule pt-4">
-              <dt className="font-medium">{area.title}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-muted">{area.body}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+      <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {areas.map((area) => (
+          <div key={area.title} className="card reveal p-6">
+            <dt className="text-lg font-semibold tracking-tight">{area.title}</dt>
+            <dd className="mt-3 text-sm leading-relaxed text-muted">{area.body}</dd>
+          </div>
+        ))}
+      </dl>
     </Section>
   );
 }

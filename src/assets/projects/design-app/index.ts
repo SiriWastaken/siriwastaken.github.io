@@ -1,29 +1,30 @@
 import type { ProjectAssets } from "../types";
-import home from "./hero/home.png";
-import compare from "./screenshots/compare.png";
+import compare from "./hero/compare.png";
+import home from "./screenshots/home.png";
 import logPhone from "./screenshots/log-phone.png";
 import prototype from "./screenshots/prototype.png";
 
+// Captured from the app running on sample data.
 const assets: ProjectAssets = {
   hero: {
-    src: home,
-    alt: "The 610 Design App home page in dark mode, listing the season's subsystems and prototypes",
+    src: compare,
+    alt: "The Compare tab in dark mode: a line graph of a prototype's cycle time across its test entries",
   },
   screenshots: [
+    {
+      src: home,
+      alt: "The home page listing the season's prototypes with their latest test results",
+      caption: "Every prototype and its latest test.",
+    },
     {
       src: logPhone,
       alt: "The log-a-test form on a phone, with fields for the test's metrics and a photo or video button",
       caption: "Logging a test from a phone.",
     },
     {
-      src: compare,
-      alt: "The Compare tab showing progress graphs across a prototype's iterations",
-      caption: "Progress across iterations.",
-    },
-    {
       src: prototype,
-      alt: "A prototype's page listing its test entries by iteration",
-      caption: "A prototype and its iteration history.",
+      alt: "A prototype's page showing what it measures and its logged tests",
+      caption: "A prototype and what it measures.",
     },
   ],
   planned: [

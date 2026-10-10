@@ -10,7 +10,7 @@ import type { Project, ProjectTier } from "./types";
 export const projects: Project[] = [
   {
     slug: "scouting-app-2026",
-    title: "610 Scouting App — 2026",
+    title: "610 Scouting App 2026",
     shortTitle: "Scouting App 2026",
     year: "2026 season",
     category: "Mobile app · FRC",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
   },
   {
     slug: "scouting-web-2027",
-    title: "610 Scouting Web — 2027",
+    title: "610 Scouting Web 2027",
     shortTitle: "Scouting Web 2027",
     year: "2027 season",
     category: "Full-stack web · FRC",
@@ -240,7 +240,7 @@ export const projects: Project[] = [
   },
   {
     slug: "millionaire",
-    title: "Who Wants to Be a Millionaire — ICS3U Final",
+    title: "Who Wants to Be a Millionaire (ICS3U Final)",
     shortTitle: "Millionaire (ICS3U)",
     year: "2026",
     category: "Desktop game · Java",

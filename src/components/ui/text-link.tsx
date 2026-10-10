@@ -7,7 +7,7 @@ type TextLinkProps = {
 };
 
 const base =
-  "underline decoration-rule-strong decoration-1 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent";
+  "underline decoration-rule-strong decoration-1 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent motion-safe:hover:decoration-2";
 
 /** Inline link. External URLs open in a new tab and say so to screen readers. */
 export function TextLink({ href, children, className = "" }: TextLinkProps) {

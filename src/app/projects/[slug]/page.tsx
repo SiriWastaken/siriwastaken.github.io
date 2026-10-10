@@ -57,10 +57,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <ProjectHeader project={project} />
 
         {hasTopImage || project.flow ? (
-          <div className="pb-12 md:grid md:grid-cols-12 md:gap-x-8">
-            <div className="md:col-span-9 md:col-start-4">
+          <div className="pb-12">
+            <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl">
               {hero ? (
-                <ProjectImage image={hero} eager sizes="(min-width: 1152px) 820px, (min-width: 768px) 75vw, 100vw" />
+                <ProjectImage image={hero} eager sizes="(min-width: 1152px) 1024px, 100vw" />
               ) : heroSlot ? (
                 <ImagePlaceholder slug={project.slug} slot={heroSlot} />
               ) : project.flow ? (
@@ -125,9 +125,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {screenshots.length > 0 || screenshotSlots.length > 0 ? (
           <DetailSection id="screenshots" title="Screenshots">
-            <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               {screenshots.map((shot) => (
-                <ProjectImage key={shot.alt} image={shot} sizes="(min-width: 1152px) 400px, (min-width: 640px) 45vw, 100vw" />
+                <ProjectImage
+                  key={shot.alt}
+                  image={shot}
+                  sizes="(min-width: 1152px) 400px, (min-width: 640px) 45vw, 100vw"
+                />
               ))}
               {screenshotSlots.map((slot) => (
                 <ImagePlaceholder key={slot.file} slug={project.slug} slot={slot} />
@@ -142,10 +146,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </DetailSection>
         ) : null}
 
-        <nav aria-label="More projects" className="grid border-t border-rule-strong py-12 md:grid-cols-12 md:gap-x-8">
-          <p className="font-mono text-xs tracking-wide text-muted uppercase md:col-span-3">Next project</p>
-          <div className="mt-3 md:col-span-9 md:mt-0">
-            <Link href={`/projects/${next.slug}`} className="group inline-flex items-baseline gap-3 text-2xl font-semibold tracking-tight transition-colors hover:text-accent">
+        <nav aria-label="More projects" className="mx-auto max-w-3xl border-t border-rule py-12 text-center">
+          <p className="text-sm text-muted">Next project</p>
+          <div className="mt-3">
+            <Link
+              href={`/projects/${next.slug}`}
+              className="group inline-flex items-baseline gap-3 text-3xl font-semibold tracking-tight transition-colors hover:text-accent"
+            >
               {next.title}
               <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">
                 →

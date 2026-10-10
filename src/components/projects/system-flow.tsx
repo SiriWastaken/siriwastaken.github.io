@@ -27,7 +27,7 @@ export function SystemFlow({ flow }: { flow: ProjectFlow }) {
       {flow.aside ? (
         <p className="mt-6 border-t border-dashed border-rule-strong pt-4 text-sm">
           <span className="font-medium">{flow.aside.label}</span>
-          <span className="text-muted"> — {flow.aside.detail}</span>
+          <span className="text-muted">: {flow.aside.detail}</span>
         </p>
       ) : null}
       <figcaption className="mt-5 font-mono text-xs text-muted">{flow.caption}</figcaption>

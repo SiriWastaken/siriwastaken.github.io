@@ -1,44 +1,46 @@
 @import "tailwindcss";
 
 /*
- * Design tokens. A warm paper background, near-black ink, and one accent
- * (a green borrowed from Team 610). Structure comes from hairline rules and
- * a 12-column grid rather than cards and shadows.
+ * Design tokens. Near-black neutral surfaces with big rounded cards and pill buttons; the colour comes from
+ * brand tiles, not from the chrome. Light and dark follow the system setting.
  */
 :root {
-  --bg: #f5f4ef;
-  --surface: #ecebe4;
-  --ink: #16181a;
-  --muted: #595e5b;
-  --rule: #d8d6cd;
-  --rule-strong: #b9b7ad;
-  --accent: #1b6843;
-  --accent-soft: #dfe9e1;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f0f0f3;
+  --ink: #0a0a0b;
+  --muted: #5b5b63;
+  --rule: #e6e6ea;
+  --rule-strong: #cfcfd6;
+  --accent: #2457e6;
+  --accent-soft: #e8eefc;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1110;
-    --surface: #171a18;
-    --ink: #e7e6e0;
-    --muted: #9ea39e;
-    --rule: #272b28;
-    --rule-strong: #3a3f3b;
-    --accent: #7cc59f;
-    --accent-soft: #1a2a21;
+    --bg: #09090b;
+    --surface: #131316;
+    --surface-2: #1b1b1f;
+    --ink: #f4f4f5;
+    --muted: #a1a1aa;
+    --rule: #232328;
+    --rule-strong: #36363d;
+    --accent: #7aa8ff;
+    --accent-soft: #14203a;
   }
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
 }
 
@@ -56,7 +58,6 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-feature-settings: "ss02";
   text-rendering: optimizeLegibility;
 }
 
@@ -68,65 +69,29 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
-/* Backdrop: dotted grid, crosshair marks, and card hover grid. Static; the flow field is the only moving part. */
-.backdrop-dots {
-  background-image: radial-gradient(circle, var(--rule-strong) 1px, transparent 1.4px);
-  background-size: 28px 28px;
-  opacity: 0.55;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 25%, black 10%, transparent 80%);
+/* Cards: a hairline border on a raised surface. */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+.card:hover {
+  border-color: var(--rule-strong);
 }
 
-.backdrop-flow {
-  mask-image: radial-gradient(ellipse 100% 90% at 50% 30%, black 25%, transparent 95%);
-}
-
-.crosshair {
-  position: absolute;
-  width: 13px;
-  height: 13px;
-}
-.crosshair::before,
-.crosshair::after {
-  content: "";
-  position: absolute;
-  background: var(--rule-strong);
-}
-.crosshair::before {
-  inset: 6px 0 auto 0;
-  height: 1px;
-}
-.crosshair::after {
-  inset: 0 auto 0 6px;
-  width: 1px;
-}
-
-.card-fx {
-  position: relative;
-  isolation: isolate;
-}
-.card-fx::before {
-  content: "";
+/* One soft pool of light behind the hero. */
+.hero-glow {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--rule-strong) 40%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--rule-strong) 40%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, transparent 50%, color-mix(in oklab, var(--accent) 9%, transparent));
-  background-size:
-    32px 32px,
-    32px 32px,
-    100% 100%;
-  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-}
-.card-fx:hover::before {
-  opacity: 1;
+  background: radial-gradient(ellipse 50% 60% at 50% 0%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 70%);
 }
 
 /*
@@ -152,16 +117,6 @@ body {
     to {
       box-shadow: 0 0 0 7px transparent;
     }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-  }
-
-  .backdrop-flow {
-    animation: fade-in 3s ease-out both;
   }
 
   /* Page-load entrance; stagger with [--i:N]. */

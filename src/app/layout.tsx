@@ -1,15 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
-import { Backdrop } from "@/components/backdrop/backdrop";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
 import { SiteFooter } from "@/components/contact/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getSiteUrl, site } from "@/data/site";
 import "./globals.css";
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
   title: {
     default: site.title,
-    template: `%s — ${site.name}`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   authors: [{ name: site.name, url: site.githubUrl }],
@@ -42,14 +40,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f4ef" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1110" },
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${plexMono.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
@@ -57,7 +55,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Backdrop />
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}
