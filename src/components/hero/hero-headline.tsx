@@ -3,17 +3,16 @@
 import { motion } from "motion/react";
 
 const lines = [
-  { text: "I build software", className: "" },
-  { text: "for our robotics team", className: "" },
-  { text: "and love doing it.", className: "text-accent italic" },
+  { text: "Human by Design", className: "" },
+  { text: "Buggy by Human.", className: "text-accent" },
 ];
 
-/** Three lines rise out of a mask, once, on load. The only staggered text on the site. */
+/** Two lines rise out of a mask, once, on load. The only staggered text on the site. */
 export function HeroHeadline() {
   return (
     <h1
       id="hero-heading"
-      className="font-display text-[clamp(3.1rem,9.5vw,8.5rem)] leading-[0.92] tracking-tight"
+      className="font-display text-[clamp(2.4rem,6.6vw,6.25rem)] leading-[0.98] tracking-tight"
     >
       {lines.map((line, i) => (
         <span key={line.text} className="block overflow-hidden pb-[0.12em]">

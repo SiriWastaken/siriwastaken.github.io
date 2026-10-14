@@ -32,14 +32,6 @@ const assets: ProjectAssets = {
       caption: "Reliability across runs.",
     },
   ],
-  planned: [
-    {
-      kind: "diagram",
-      file: "diagrams/harness.png",
-      subject: "Shared instrumentation harness driving both apps, then results → checksum check → valid/invalid.",
-      aspect: "16/10",
-    },
-  ],
 };
 
 export default assets;

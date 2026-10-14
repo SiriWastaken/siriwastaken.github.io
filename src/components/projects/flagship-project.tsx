@@ -2,7 +2,6 @@ import { getProjectAssets } from "@/assets/projects";
 import { Reveal } from "@/components/motion/reveal";
 import type { Project } from "@/data/types";
 import { HighlightList } from "./highlight-list";
-import { ImagePlaceholder } from "./image-placeholder";
 import { ProjectImage } from "./project-image";
 import { ProjectLinks } from "./project-links";
 import { ProjectTitle } from "./project-title";
@@ -13,7 +12,7 @@ type FlagshipProps = { project: Project; index: number };
 
 /** The largest treatment: copy on one side, the product on the other, flipping sides down the page. */
 export function FlagshipProject({ project, index }: FlagshipProps) {
-  const { hero, heroSlot } = getProjectAssets(project.slug);
+  const { hero } = getProjectAssets(project.slug);
   const flip = index % 2 === 1;
 
   return (
@@ -26,9 +25,9 @@ export function FlagshipProject({ project, index }: FlagshipProps) {
           <p className="font-mono text-xs text-muted">
             <span className="text-accent">{String(index + 1).padStart(2, "0")}</span> · {project.year.replace(" season", "")}
           </p>
-          <ProjectTitle project={project} className="mt-4 text-5xl sm:text-6xl" />
+          <ProjectTitle project={project} className="mt-4 text-4xl sm:text-5xl" />
           <p className="mt-5 text-lg leading-relaxed">{project.summary}</p>
-          <HighlightList items={project.highlights} limit={3} className="mt-6 text-muted" />
+          <HighlightList items={project.highlights} limit={2} className="mt-6 text-muted" />
           <TechList technologies={project.technologies} className="mt-6" />
           <ProjectLinks project={project} className="mt-6" />
         </div>
@@ -37,8 +36,6 @@ export function FlagshipProject({ project, index }: FlagshipProps) {
           <div className="border border-rule-strong bg-surface transition-colors duration-200 hover:border-accent">
             {hero ? (
               <ProjectImage image={hero} sizes="(min-width: 1280px) 700px, (min-width: 1024px) 55vw, 100vw" />
-            ) : heroSlot ? (
-              <ImagePlaceholder slug={project.slug} slot={heroSlot} />
             ) : project.flow ? (
               <SystemFlow flow={project.flow} />
             ) : null}

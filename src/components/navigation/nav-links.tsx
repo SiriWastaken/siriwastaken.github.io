@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 const links = [
   { id: "work", label: "Work" },
   { id: "stack", label: "Stack" },
-  { id: "frc", label: "Team", wideOnly: true },
   { id: "about", label: "About" },
   { id: "contact", label: "Say hi", wideOnly: true },
 ];

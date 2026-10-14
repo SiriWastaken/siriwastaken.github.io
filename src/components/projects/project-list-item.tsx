@@ -15,7 +15,7 @@ export function ProjectListItem({ project }: { project: Project }) {
         >
           <div className="lg:col-span-5">
             <p className="font-mono text-xs text-muted">{project.year}</p>
-            <ProjectTitle project={project} className="mt-3 text-3xl sm:text-4xl" />
+            <ProjectTitle project={project} className="mt-3 text-2xl sm:text-3xl" />
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <p className="leading-relaxed text-muted">{project.summary}</p>

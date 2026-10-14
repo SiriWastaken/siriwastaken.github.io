@@ -4,7 +4,7 @@ import type { Project } from "@/data/types";
 /** The only status tag on the site: (WIP) after the name of anything still in progress. */
 export function Wip({ project }: { project: Project }) {
   return project.status === "in-development" ? (
-    <span className="whitespace-nowrap text-accent italic"> (WIP)</span>
+    <span className="whitespace-nowrap text-accent"> (WIP)</span>
   ) : null;
 }
 

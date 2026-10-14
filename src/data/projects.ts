@@ -18,7 +18,7 @@ export const projects: Project[] = [
     statusNote: "Built for Team 610's 2026 season",
     tier: "flagship",
     summary:
-      "An offline-first Android scouting app that lets six scouts record every robot in a match and keeps their data in sync across the team's tablets.",
+      "The Android app our six scouts use to record every robot in a match. It works offline and syncs across the team's tablets.",
     technologies: [
       "TypeScript",
       "React Native",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "Strategy tools built on the synced data: multi-team comparison, a third-robot selector, a drag-and-drop picklist, and a match predictor that picked the winning alliance 84.7% of the time at the 2026 Ontario Provincial Championships (Technology Division).",
       "Team lists, match schedules, and rankings pulled from The Blue Alliance API.",
     ],
-    sourceNote: "Private team repository",
+    sourceNote: "Proprietery repo",
     flow: {
       caption: "How a match gets from a scout's tablet to the strategy team",
       steps: [
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     status: "in-development",
     tier: "flagship",
     summary:
-      "A Next.js dashboard for Team 610's scouting data, with its own sign-in, server-enforced roles, live updates over WebSockets, and an operations panel for mentors.",
+      "A Next.js dashboard for Team 610's scouting data, with its own sign-in, roles enforced on the server, live updates over WebSockets, and an admin panel for mentors.",
     technologies: [
       "TypeScript",
       "Next.js",
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     statusNote: "v0.2.0, not published yet",
     tier: "featured",
     summary:
-      "An execution and verification layer for AI-assisted development: a task ledger where nothing counts as done until a check has passed against the files it covers.",
+      "A task ledger for AI-assisted coding where nothing counts as done until a check has passed against the files it covers.",
     technologies: ["JavaScript", "Node.js", "Claude Code plugin", "JSON"],
     role: "Sole developer",
     highlights: [
@@ -253,7 +253,7 @@ export const projects: Project[] = [
     statusNote: "Grade 11 Computer Science final project",
     tier: "additional",
     summary:
-      "My Grade 11 Computer Science final: a Who Wants to Be a Millionaire–style quiz game in Java Swing, with every screen drawn by hand in Java2D.",
+      "My Grade 11 CS final: a Who Wants to Be a Millionaire quiz game in Java Swing, with every screen drawn by hand.",
     technologies: ["Java", "Swing", "Java2D"],
     role: "Sole developer",
     highlights: [
@@ -294,7 +294,7 @@ export const projects: Project[] = [
     statusNote: "Replacing the team's spreadsheet and Drive folder",
     tier: "flagship",
     summary:
-      "A mobile-first PWA for logging robot prototype tests with photos and video, then comparing iterations, with server-enforced roles and offline drafts.",
+      "A phone-first web app for logging robot prototype tests with photos and video, then comparing iterations. Drafts save offline and roles are enforced on the server.",
     technologies: [
       "TypeScript",
       "Next.js",
@@ -357,7 +357,7 @@ export const projects: Project[] = [
     statusNote: "Measured on one scouting tablet",
     tier: "featured",
     summary:
-      "A controlled benchmark of the scouting app against a native Java rewrite, run on the actual tablet to decide whether a rewrite would be worth it.",
+      "I ran our scouting app against a native Java version on the actual tablet to decide whether a rewrite would be worth it.",
     technologies: ["React Native", "Java", "Android", "Couchbase Lite", "Python"],
     role: "Sole developer",
     highlights: [
@@ -396,7 +396,7 @@ export const projects: Project[] = [
     status: "in-development",
     tier: "additional",
     summary:
-      "A command-line tool that inspects, health-checks, and diffs the project you're standing in, and reports `unknown` instead of guessing.",
+      "A command-line tool that inspects, health-checks, and diffs the project you're in, and says `unknown` instead of guessing.",
     technologies: ["Java", "Maven", "JUnit"],
     role: "Sole developer",
     highlights: [

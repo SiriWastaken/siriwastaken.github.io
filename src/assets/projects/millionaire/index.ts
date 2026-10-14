@@ -3,9 +3,6 @@ import audiencePoll from "./hero/audience-poll.png";
 import playOrWalk from "./screenshots/play-or-walk.png";
 import winScreen from "./screenshots/win-screen.png";
 
-// To add a screenshot: save it at the path in `file`, import it, add it to
-// `screenshots` with real alt text, and delete its slot below.
-
 const assets: ProjectAssets = {
   hero: {
     src: audiencePoll,

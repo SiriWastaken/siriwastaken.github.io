@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist, JetBrains_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { SiteFooter } from "@/components/contact/site-footer";
@@ -12,11 +12,9 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -62,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${instrument.variable} ${jetbrains.variable} antialiased`}
+      className={`${geist.variable} ${bricolage.variable} ${jetbrains.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col font-sans">
         <a

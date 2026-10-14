@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/section";
 
 export function AboutSection() {
   return (
-    <Section id="about" index="04" title="About me">
+    <Section id="about" index="03" title="About me">
       <Reveal className="grid lg:grid-cols-12">
         <div className="max-w-3xl space-y-6 lg:col-span-7 lg:col-start-6">
           <p className="text-lg leading-relaxed">

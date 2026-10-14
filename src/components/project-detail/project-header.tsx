@@ -15,7 +15,7 @@ export function ProjectHeader({ project }: { project: Project }) {
         </span>
         All work
       </Link>
-      <h1 className="mt-10 max-w-5xl font-display text-[clamp(2.75rem,8vw,6.5rem)] leading-[0.95] tracking-tight text-balance">
+      <h1 className="mt-10 max-w-5xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight text-balance">
         {project.title}
         <Wip project={project} />
       </h1>

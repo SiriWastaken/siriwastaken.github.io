@@ -8,7 +8,6 @@ import {
 } from "@/components/project-detail/detail-section";
 import { ProjectHeader } from "@/components/project-detail/project-header";
 import { HighlightList } from "@/components/projects/highlight-list";
-import { ImagePlaceholder } from "@/components/projects/image-placeholder";
 import { ProjectImage } from "@/components/projects/project-image";
 import { SystemFlow } from "@/components/projects/system-flow";
 import { TechList } from "@/components/projects/tech-list";
@@ -53,13 +52,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { details } = project;
   const {
     hero,
-    heroSlot,
     screenshots,
     diagrams,
-    screenshotSlots,
-    diagramSlots,
   } = getProjectAssets(project.slug);
-  const hasTopImage = Boolean(hero || heroSlot);
+  const hasTopImage = Boolean(hero);
 
   const withDetails = getProjectsWithDetails();
   const next =
@@ -83,8 +79,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     eager
                     sizes="(min-width: 1152px) 1024px, 100vw"
                   />
-                ) : heroSlot ? (
-                  <ImagePlaceholder slug={project.slug} slot={heroSlot} />
                 ) : project.flow ? (
                   <SystemFlow flow={project.flow} />
                 ) : null}
@@ -132,17 +126,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 className="mt-8 border border-rule-strong"
               />
             ))}
-            {diagramSlots.map((slot) => (
-              <ImagePlaceholder
-                key={slot.file}
-                slug={project.slug}
-                slot={slot}
-                className="mt-8"
-              />
-            ))}
           </DetailSection>
 
-          <DetailSection id="challenges" title="The hard parts">
+          <DetailSection id="challenges" title="The challenges">
             <div className="grid max-w-3xl gap-8">
               {details.challenges.map((challenge) => (
                 <div key={challenge.title}>
@@ -157,7 +143,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </DetailSection>
 
-          {screenshots.length > 0 || screenshotSlots.length > 0 ? (
+          {screenshots.length > 0 ? (
             <DetailSection id="screenshots" title="Screenshots">
               <div className="grid gap-6 sm:grid-cols-2">
                 {screenshots.map((shot) => (
@@ -165,13 +151,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     key={shot.alt}
                     image={shot}
                     sizes="(min-width: 1152px) 400px, (min-width: 640px) 45vw, 100vw"
-                  />
-                ))}
-                {screenshotSlots.map((slot) => (
-                  <ImagePlaceholder
-                    key={slot.file}
-                    slug={project.slug}
-                    slot={slot}
                   />
                 ))}
               </div>
@@ -192,7 +171,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className="mt-3">
               <Link
                 href={`/projects/${next.slug}`}
-                className="group inline-flex items-baseline gap-4 font-display text-5xl tracking-tight text-balance transition-colors hover:text-accent sm:text-7xl"
+                className="group inline-flex items-baseline gap-4 font-display text-4xl tracking-tight text-balance transition-colors hover:text-accent sm:text-6xl"
               >
                 {next.title}
                 <span

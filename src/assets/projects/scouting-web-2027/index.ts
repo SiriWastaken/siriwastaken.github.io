@@ -3,15 +3,12 @@ import teams from "./hero/teams-dashboard.png";
 import coverage from "./screenshots/coverage.png";
 import teamsDark from "./screenshots/teams-dark.png";
 import strategy from "./screenshots/strategy-head-to-head.png";
+import boxPlot from "./screenshots/box-plot-board.png";
+import realtime from "./screenshots/realtime-self-test.png";
+import users from "./screenshots/users-and-roles.png";
 
 // Screenshots come from the test bench's fake Sync Gateway and sample event, not real scouting data.
 //
-// To add an image: save it at the path in `file`, import it, add it to
-// hero/screenshots/diagrams with real alt text, and delete its slot below.
-//
-//   import averages from "./screenshots/averages-day2.png";
-//   screenshots: [{ src: averages, alt: "What the screenshot shows" }],
-
 const assets: ProjectAssets = {
   hero: {
     src: teams,
@@ -33,42 +30,20 @@ const assets: ProjectAssets = {
       alt: "Coverage page showing teams with aggregates, observed matches, and which teams' records are ready",
       caption: "Coverage (sample event data): which teams still need scouting.",
     },
-  ],
-  planned: [
     {
-      kind: "screenshot",
-      file: "screenshots/box-plot-board.png",
-      subject: "Averages / Box Plot board with real event data.",
-      caption: "The metric board: averages and distributions per team.",
-      aspect: "16/10",
+      src: boxPlot,
+      alt: "The Box Plot page ranking 26 teams by fuel scored per match, with columns for accuracy, crossings and defense",
+      caption: "Ranking the whole event by any stat (sample event data).",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/admin-overview.png",
-      subject: "Admin overview: health checks, sync status, and API metrics all green.",
-      caption: "The operations panel: health checks, sync status, and API metrics.",
-      aspect: "16/10",
+      src: users,
+      alt: "The Admin Users tab listing accounts with their roles (Owner, Mentor, Scout lead, Scout, Member), status and session count",
+      caption: "Admin → Users: five roles, sign-in status, and sessions (made-up accounts).",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/realtime-self-test.png",
-      subject: "Admin Realtime tab after running the WebSocket self-test.",
-      caption: "Realtime monitoring and the WebSocket self-test.",
-      aspect: "16/10",
-    },
-    {
-      kind: "screenshot",
-      file: "screenshots/users-and-roles.png",
-      subject: "Users page showing roles and approval states (blur names and emails).",
-      caption: "Accounts, roles, and approvals, enforced on the server.",
-      aspect: "16/10",
-    },
-    {
-      kind: "screenshot",
-      file: "screenshots/ci-all-green.png",
-      subject: "GitHub Actions run for a pull request with every check passing.",
-      caption: "Every pull request runs the full test bench in CI.",
-      aspect: "16/10",
+      src: realtime,
+      alt: "The Admin Realtime tab after running the WebSocket self-test, showing a Passed result and connection metrics",
+      caption: "The WebSocket self-test passing, with live connection metrics.",
     },
   ],
 };

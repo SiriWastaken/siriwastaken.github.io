@@ -25,7 +25,7 @@ export function SiteFooter() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-baseline justify-between py-4 font-display text-4xl tracking-tight transition-colors hover:text-accent sm:text-5xl"
+                className="group flex items-baseline justify-between py-4 font-display text-3xl tracking-tight transition-colors hover:text-accent sm:text-4xl"
               >
                 <span>
                   {link.label}

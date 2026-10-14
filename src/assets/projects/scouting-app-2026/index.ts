@@ -2,12 +2,11 @@ import type { ProjectAssets } from "../types";
 import autoDark from "./hero/auto-scouting-dark.png";
 import autoLight from "./screenshots/auto-scouting-light.png";
 import scoutHome from "./screenshots/scout-home-dark.png";
-
-// To add an image: save it at the path in `file`, import it, add it to
-// hero/screenshots/diagrams with real alt text, and delete its slot below.
-//
-//   import averages from "./screenshots/averages-day2.png";
-//   screenshots: [{ src: averages, alt: "What the screenshot shows" }],
+import averagesDay2 from "./screenshots/averages-day2.png";
+import matchLog from "./screenshots/match-performance-log.png";
+import strategyCompare from "./screenshots/strategy-compare.png";
+import teamStats from "./screenshots/team-stats.png";
+import teleop from "./screenshots/teleop-counters.png";
 
 // Screenshots are the app's web build running on a tablet-sized viewport, not real scouting data.
 const assets: ProjectAssets = {
@@ -26,42 +25,30 @@ const assets: ProjectAssets = {
       alt: "The Auto scouting screen in light mode with counters filled in",
       caption: "The same screen in light mode.",
     },
-  ],
-  planned: [
     {
-      kind: "screenshot",
-      file: "screenshots/teleop-scoring.png",
-      subject: "Teleop page mid-match, with scoring controls filled in.",
-      caption: "The teleop screen, built to be used while watching a live match.",
-      aspect: "16/10",
+      src: teleop,
+      alt: "The Teleop screen in dark mode: tap counters for fuel scored, passes, plowed and fed, plus bump and trench crossings",
+      caption: "Teleop: big tap counters scouts use during a match.",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/averages-day1-vs-day2.png",
-      subject: "Averages tab with Day 2 mode on, showing risers and fallers.",
-      caption: "Averages with a Day 1 / Day 2 split.",
-      aspect: "16/10",
+      src: averagesDay2,
+      alt: "The Leaderboards table with Day 2 mode on, showing each team's averages and a trend column of risers and fallers in green and red",
+      caption: "Averages with Day 2 on: green and red trend values show who is rising or falling (sample data).",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/picklist-board.png",
-      subject: "Picklist board mid-drag, with a team's radar chart open.",
-      caption: "The drag-and-drop picklist used for alliance selection.",
-      aspect: "16/10",
+      src: teamStats,
+      alt: "Team Stats and Analytics for one team: auto, teleop and endgame points per game, fuel statistics and climb accuracy",
+      caption: "One team's stats (sample data).",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/match-plan.png",
-      subject: "Strategy tools: a match plan with climb estimates and role suggestions.",
-      caption: "Match planning from synced scouting data.",
-      aspect: "16/10",
+      src: matchLog,
+      alt: "A match performance log listing each scouted match with auto, teleop and endgame results and defense flags",
+      caption: "Every scouted match for a team (sample data).",
     },
     {
-      kind: "screenshot",
-      file: "screenshots/team-stats-auto-replay.png",
-      subject: "Stats tab for one team: charts plus the auto path replay.",
-      caption: "Per-team stats with auto path replay.",
-      aspect: "16/10",
+      src: strategyCompare,
+      alt: "Strategy Tools comparing two teams side by side, with the better value in each row highlighted in green",
+      caption: "Comparing two teams head to head (sample data).",
     },
   ],
 };
