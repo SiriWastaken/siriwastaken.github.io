@@ -3,13 +3,16 @@ import { Container } from "@/components/ui/container";
 
 export default function NotFound() {
   return (
-    <Container className="flex flex-col items-center py-24 text-center sm:py-36">
-      <p className="font-mono text-sm text-muted">404</p>
-      <h1 className="mt-4 text-5xl font-semibold tracking-tight">Nothing here.</h1>
-      <p className="mt-4 text-lg text-muted">That page doesn&apos;t exist, or it moved.</p>
+    <Container className="py-24 sm:py-36">
+      <h1 className="font-display text-8xl leading-none tracking-tight sm:text-9xl">
+        404<span className="text-accent">.</span>
+      </h1>
+      <p className="mt-6 text-xl">
+        Nothing here. Either it moved or it never existed.
+      </p>
       <div className="mt-8">
         <ButtonLink href="/" variant="primary">
-          Back to the homepage
+          Back home
         </ButtonLink>
       </div>
     </Container>

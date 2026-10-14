@@ -1,5 +1,5 @@
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/ui/section";
-import { TextLink } from "@/components/ui/text-link";
 
 const areas = [
   {
@@ -26,24 +26,22 @@ const areas = [
 
 export function FrcSection() {
   return (
-    <Section
-      id="frc"
-      title="On the FRC team"
-      intro={
-        <p>
-          I work on the software side of FRC Team 610, the Crescent Coyotes: tools for getting good data during an event
-          and turning it into decisions. The details are in the{" "}
-          <TextLink href="/projects/scouting-app-2026">2026 scouting app</TextLink> and{" "}
-          <TextLink href="/projects/scouting-web-2027">2027 scouting web</TextLink> write-ups.
-        </p>
-      }
-    >
-      <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {areas.map((area) => (
-          <div key={area.title} className="card reveal p-6">
-            <dt className="text-lg font-semibold tracking-tight">{area.title}</dt>
-            <dd className="mt-3 text-sm leading-relaxed text-muted">{area.body}</dd>
-          </div>
+    <Section id="frc" index="03" title="The team">
+      <dl className="border-b border-rule-strong">
+        {areas.map((area, i) => (
+          <Reveal
+            key={area.title}
+            y={10}
+            className="grid gap-x-10 gap-y-2 border-t border-rule-strong py-6 lg:grid-cols-12"
+          >
+            <dt className="font-display text-3xl tracking-tight lg:col-span-5">
+              <span aria-hidden="true" className="mr-4 font-mono text-xs text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {area.title}
+            </dt>
+            <dd className="leading-relaxed text-muted lg:col-span-6 lg:col-start-7">{area.body}</dd>
+          </Reveal>
         ))}
       </dl>
     </Section>

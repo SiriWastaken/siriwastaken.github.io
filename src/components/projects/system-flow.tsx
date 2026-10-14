@@ -18,7 +18,9 @@ export function SystemFlow({ flow }: { flow: ProjectFlow }) {
               aria-hidden="true"
               className="absolute top-1 -left-[4px] size-[7px] bg-accent md:-top-[4px] md:left-0"
             />
-            <span className="font-mono text-[11px] text-muted">{String(index + 1).padStart(2, "0")}</span>
+            <span className="font-mono text-[11px] text-muted">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <p className="mt-1 text-sm font-medium">{step.label}</p>
             <p className="mt-1 text-sm text-muted">{step.detail}</p>
           </li>
@@ -30,7 +32,9 @@ export function SystemFlow({ flow }: { flow: ProjectFlow }) {
           <span className="text-muted">: {flow.aside.detail}</span>
         </p>
       ) : null}
-      <figcaption className="mt-5 font-mono text-xs text-muted">{flow.caption}</figcaption>
+      <figcaption className="mt-5 font-mono text-xs text-muted">
+        {flow.caption}
+      </figcaption>
     </figure>
   );
 }

@@ -1,5 +1,5 @@
-import { getProjectsByTier } from "@/data/projects";
 import { Section } from "@/components/ui/section";
+import { getProjectsByTier } from "@/data/projects";
 import { FeaturedProject } from "./featured-project";
 import { FlagshipProject } from "./flagship-project";
 import { ProjectListItem } from "./project-list-item";
@@ -10,26 +10,17 @@ export function WorkSection() {
   const additional = getProjectsByTier("additional");
 
   return (
-    <Section
-      id="work"
-      title="Things I've built"
-      intro={
-        <p>
-          Scouting and design tools for FRC Team 610, a performance benchmark, a developer tool, and a few smaller
-          projects, from mobile apps to command-line utilities.
-        </p>
-      }
-    >
-      <div className="grid gap-5">
-        {flagship.map((project) => (
-          <FlagshipProject key={project.slug} project={project} />
+    <Section id="work" index="01" title="Stuff I've built">
+      <div>
+        {flagship.map((project, i) => (
+          <FlagshipProject key={project.slug} project={project} index={i} />
         ))}
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-x-14 gap-y-16 pb-24 md:grid-cols-2">
           {featured.map((project) => (
             <FeaturedProject key={project.slug} project={project} />
           ))}
         </div>
-        <ul className="grid gap-5">
+        <ul>
           {additional.map((project) => (
             <ProjectListItem key={project.slug} project={project} />
           ))}

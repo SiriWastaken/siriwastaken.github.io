@@ -1,50 +1,33 @@
+import { Reveal } from "@/components/motion/reveal";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
-import { TechTile } from "@/components/stack/tech-icon";
 import { site } from "@/data/site";
-import { stack } from "@/data/stack";
-
-// One tile per distinct brand mark (React and React Native share a logo).
-const tiles = [...new Map(stack.flatMap((group) => group.items).map((tech) => [tech.icon.title, tech])).values()];
+import { Duel } from "./duel";
+import { HeroHeadline } from "./hero-headline";
 
 export function Hero() {
   return (
-    <section
-      aria-labelledby="hero-heading"
-      className="relative isolate overflow-hidden pt-20 pb-16 text-center sm:pt-32 sm:pb-24"
-    >
-      <div aria-hidden="true" className="hero-glow" />
-      <Container className="flex flex-col items-center">
-        <h1
-          id="hero-heading"
-          className="enter max-w-4xl text-6xl font-semibold tracking-tighter text-balance sm:text-8xl"
-        >
-          Hi, I&apos;m {site.shortName}.
-        </h1>
-        <p className="enter [--i:1] mt-8 max-w-2xl text-xl leading-snug text-balance text-muted sm:text-2xl">
-          I&apos;m a student developer building full-stack software, robotics tools, and developer tooling, from mobile
-          apps and web dashboards to command-line utilities.
-        </p>
-
-        <div className="enter [--i:2] mt-10 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/#work" variant="primary">
-            View projects
-          </ButtonLink>
-          <ButtonLink href={site.githubUrl}>GitHub</ButtonLink>
-          {site.linkedinUrl ? <ButtonLink href={site.linkedinUrl}>LinkedIn</ButtonLink> : null}
-          <ButtonLink href={site.dmojUrl}>DMOJ</ButtonLink>
-        </div>
-
-        <ul
-          aria-label="Technologies I use"
-          className="enter [--i:3] mt-16 flex max-w-2xl flex-wrap justify-center gap-3"
-        >
-          {tiles.map((tech) => (
-            <li key={tech.icon.title} title={tech.name} className="group">
-              <TechTile icon={tech.icon} className="size-12" />
-            </li>
-          ))}
-        </ul>
+    <section aria-labelledby="hero-heading" className="border-b border-rule pt-12 pb-16 sm:pt-20 sm:pb-24">
+      <Container>
+        <HeroHeadline />
+        <Reveal delay={0.4} className="mt-12 grid gap-x-12 gap-y-14 lg:mt-16 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="max-w-lg text-xl leading-snug text-pretty sm:text-2xl">
+              I&apos;m Sri. I build scouting apps, dashboards, and CLI tools, and I benchmark my own decisions.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href="/#work" variant="primary">
+                See the work
+              </ButtonLink>
+              <ButtonLink href={site.githubUrl}>GitHub</ButtonLink>
+              <ButtonLink href={site.dmojUrl}>DMOJ</ButtonLink>
+              {site.linkedinUrl ? <ButtonLink href={site.linkedinUrl}>LinkedIn</ButtonLink> : null}
+            </div>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-8">
+            <Duel />
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

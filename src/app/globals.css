@@ -1,52 +1,49 @@
 @import "tailwindcss";
 
 /*
- * Design tokens. Near-black neutral surfaces with big rounded cards and pill buttons; the colour comes from
- * brand tiles, not from the chrome. Light and dark follow the system setting.
+ * Design tokens. Warm graphite and bone with ONE accent (orange). Light and dark follow the system setting.
  */
 :root {
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --surface-2: #f0f0f3;
-  --ink: #0a0a0b;
-  --muted: #5b5b63;
-  --rule: #e6e6ea;
-  --rule-strong: #cfcfd6;
-  --accent: #2457e6;
-  --accent-soft: #e8eefc;
+  --bg: #f2eee4;
+  --surface: #e9e4d6;
+  --ink: #15130f;
+  --muted: #5d584b;
+  --rule: #d9d3c2;
+  --rule-strong: #b9b29d;
+  --accent: #c93a00;
+  --on-accent: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #09090b;
-    --surface: #131316;
-    --surface-2: #1b1b1f;
-    --ink: #f4f4f5;
-    --muted: #a1a1aa;
-    --rule: #232328;
-    --rule-strong: #36363d;
-    --accent: #7aa8ff;
-    --accent-soft: #14203a;
+    --bg: #0f0e0c;
+    --surface: #181714;
+    --ink: #f1ece0;
+    --muted: #a39e90;
+    --rule: #25231e;
+    --rule-strong: #3d3a32;
+    --accent: #ff6a2b;
+    --on-accent: #140a04;
   }
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
   --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  --color-on-accent: var(--on-accent);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
 }
 
 html {
   color-scheme: light dark;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -63,99 +60,24 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 8px;
 }
 
-/* Cards: a hairline border on a raised surface. */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 24px;
-  transition:
-    border-color 0.25s ease,
-    background-color 0.25s ease;
-}
-.card:hover {
-  border-color: var(--rule-strong);
+/* Small mono label for group names. */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-/* One soft pool of light behind the hero. */
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 50% 60% at 50% 0%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 70%);
-}
-
-/*
- * Motion. Everything lives inside no-preference, so reduced-motion visitors get a still page.
- * `reveal` uses scroll-driven animation where supported and is simply static elsewhere.
- */
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @keyframes pulse-ring {
-    from {
-      box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent);
-    }
-    to {
-      box-shadow: 0 0 0 7px transparent;
-    }
-  }
-
-  /* Page-load entrance; stagger with [--i:N]. */
-  .enter {
-    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    animation-delay: calc(var(--i, 0) * 90ms);
-  }
-
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 25%;
-    }
-
-    @keyframes grow {
-      from {
-        transform: scaleX(0);
-      }
-      to {
-        transform: scaleX(1);
-      }
-    }
-
-    /* Reading progress: a thin accent line along the top edge. */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0 0 auto 0;
-      height: 2px;
-      z-index: 50;
-      background: var(--accent);
-      transform-origin: left;
-      animation: grow linear both;
-      animation-timeline: scroll(root);
-    }
-  }
-}
-
+/* Motion lives in components/motion (the `motion` library). Reduced motion is handled by MotionConfig; this is the CSS fallback. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

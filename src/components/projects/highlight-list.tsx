@@ -1,17 +1,16 @@
 type HighlightListProps = {
   items: string[];
-  columns?: 1 | 2;
+  /** Show only the first few; the case study has the rest. */
+  limit?: number;
   className?: string;
 };
 
-export function HighlightList({ items, columns = 1, className = "" }: HighlightListProps) {
+export function HighlightList({ items, limit, className = "" }: HighlightListProps) {
   return (
-    <ul
-      className={`grid gap-x-10 gap-y-4 text-sm leading-relaxed ${columns === 2 ? "sm:grid-cols-2" : ""} ${className}`}
-    >
-      {items.map((item) => (
-        <li key={item} className="relative pl-4">
-          <span aria-hidden="true" className="absolute top-[0.6em] left-0 h-px w-2 bg-accent" />
+    <ul className={`grid gap-y-4 text-sm leading-relaxed ${className}`}>
+      {items.slice(0, limit).map((item) => (
+        <li key={item} className="relative pl-5">
+          <span aria-hidden="true" className="absolute top-[0.7em] left-0 h-px w-3 bg-accent" />
           {item}
         </li>
       ))}

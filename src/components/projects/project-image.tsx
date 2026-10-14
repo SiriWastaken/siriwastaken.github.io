@@ -9,7 +9,12 @@ type ProjectImageProps = {
 };
 
 /** A framed project image. Never upscaled past its intrinsic width. */
-export function ProjectImage({ image, sizes, eager = false, className = "" }: ProjectImageProps) {
+export function ProjectImage({
+  image,
+  sizes,
+  eager = false,
+  className = "",
+}: ProjectImageProps) {
   return (
     <figure className={className}>
       <Image
@@ -21,7 +26,11 @@ export function ProjectImage({ image, sizes, eager = false, className = "" }: Pr
         className="h-auto w-full"
         style={{ maxWidth: image.src.width }}
       />
-      {image.caption ? <figcaption className="mt-3 font-mono text-xs text-muted">{image.caption}</figcaption> : null}
+      {image.caption ? (
+        <figcaption className="mt-3 font-mono text-xs text-muted">
+          {image.caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

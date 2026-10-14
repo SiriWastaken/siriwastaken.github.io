@@ -1,16 +1,15 @@
 import Link from "next/link";
 import type { Project } from "@/data/types";
 
-const linkBase =
-  "group inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-sm font-medium transition-all duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-95";
-const linkClass = `${linkBase} bg-surface-2 text-ink hover:bg-rule-strong`;
-const primaryClass = `${linkBase} bg-ink text-bg hover:opacity-85`;
+const linkClass =
+  "group inline-flex items-center gap-1.5 border-b border-rule-strong pb-0.5 font-mono text-sm transition-colors duration-150 hover:border-accent hover:text-accent";
+const primaryClass = `${linkClass} border-accent text-accent`;
 
 function Arrow({ external = false }: { external?: boolean }) {
   return (
     <span
       aria-hidden="true"
-      className={`inline-block transition-transform ${external ? "group-hover:translate-x-0.5 group-hover:-translate-y-0.5" : "group-hover:translate-x-1"}`}
+      className={`inline-block transition-transform duration-150 ${external ? "group-hover:translate-x-0.5 group-hover:-translate-y-0.5" : "group-hover:translate-x-1"}`}
     >
       {external ? "↗" : "→"}
     </span>
@@ -26,16 +25,15 @@ type ProjectLinksProps = {
 export function ProjectLinks({ project, showDetails = true, className = "" }: ProjectLinksProps) {
   const hasDetails = showDetails && project.details;
   return (
-    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-x-6 gap-y-3 ${className}`}>
       {hasDetails ? (
         <Link href={`/projects/${project.slug}`} className={primaryClass}>
-          Read more<span className="sr-only"> about {project.title}</span> <Arrow />
+          How it works<span className="sr-only"> for {project.title}</span> <Arrow />
         </Link>
       ) : null}
       {project.githubUrl ? (
         <a href={project.githubUrl} target="_blank" rel="noreferrer" className={linkClass}>
-          Source<span className="sr-only"> code for {project.title} on GitHub (opens in a new tab)</span>{" "}
-          <Arrow external />
+          Code<span className="sr-only"> for {project.title} on GitHub (opens in a new tab)</span> <Arrow external />
         </a>
       ) : null}
       {project.liveUrl ? (
@@ -44,7 +42,7 @@ export function ProjectLinks({ project, showDetails = true, className = "" }: Pr
         </a>
       ) : null}
       {!project.githubUrl && project.sourceNote ? (
-        <span className="font-mono text-xs text-muted">{project.sourceNote}</span>
+        <span className="font-mono text-xs text-muted">{project.sourceNote.toLowerCase()}</span>
       ) : null}
     </div>
   );

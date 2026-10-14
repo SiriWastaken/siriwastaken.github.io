@@ -1,25 +1,23 @@
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/ui/section";
 
 export function AboutSection() {
   return (
-    <Section id="about" title="A bit about me">
-      <div className="card reveal mx-auto max-w-3xl p-6 sm:p-10">
-        <div className="space-y-5 text-lg leading-relaxed">
-          <p>
-            I’m a high-school student who builds software, for FRC Team 610 and for myself, because I like making things
-            and figuring out how they work. I started coding in Java before taking ICS3U (Introduction to Computer
-            Science - Grade 11), where I learned more of the language and built a bunch of smaller projects. From there,
-            I moved on to larger projects like a Swing game for my Grade 11 CS final. These days, I mostly write
-            TypeScript, using React Native for our team’s scouting tablets and Next.js for the web.
+    <Section id="about" index="04" title="About me">
+      <Reveal className="grid lg:grid-cols-12">
+        <div className="max-w-3xl space-y-6 lg:col-span-7 lg:col-start-6">
+          <p className="text-lg leading-relaxed">
+            I&apos;m a high-school student who likes building things and figuring out how they work. I started with
+            Java, took ICS3U, and built a Swing game for the Grade 11 final. Now it&apos;s mostly TypeScript: React
+            Native on our team&apos;s scouting tablets, Next.js for the web.
           </p>
-          <p className="text-muted">
-            The problems I like best are where software meets something messy: tablets that have to stay in sync through
-            a network box we built ourselves, scouts who need to enter data faster, a benchmark that has to prove its
-            own numbers. I&apos;m also working toward my first open-source contributions, starting with The Blue
-            Alliance.
+          <p className="text-lg leading-relaxed text-muted">
+            I like software that has to survive something messy: tablets syncing through a network box we built
+            ourselves, scouts who need to enter data faster, a benchmark that has to back up its own numbers. Next up is
+            my first open-source contribution, starting with The Blue Alliance.
           </p>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

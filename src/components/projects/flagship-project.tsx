@@ -1,54 +1,50 @@
-import Link from "next/link";
 import { getProjectAssets } from "@/assets/projects";
+import { Reveal } from "@/components/motion/reveal";
 import type { Project } from "@/data/types";
 import { HighlightList } from "./highlight-list";
 import { ImagePlaceholder } from "./image-placeholder";
 import { ProjectImage } from "./project-image";
 import { ProjectLinks } from "./project-links";
-import { StatusLabel } from "./status-label";
+import { ProjectTitle } from "./project-title";
 import { SystemFlow } from "./system-flow";
 import { TechList } from "./tech-list";
 
-/** The largest project treatment: reserved for the scouting and design systems. */
-export function FlagshipProject({ project }: { project: Project }) {
+type FlagshipProps = { project: Project; index: number };
+
+/** The largest treatment: copy on one side, the product on the other, flipping sides down the page. */
+export function FlagshipProject({ project, index }: FlagshipProps) {
   const { hero, heroSlot } = getProjectAssets(project.slug);
-  const titleId = `project-${project.slug}`;
+  const flip = index % 2 === 1;
 
   return (
-    <article aria-labelledby={titleId} className="card reveal p-6 sm:p-10">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-muted">
-        <span>{project.category}</span>
-        <span aria-hidden="true">·</span>
-        <span>{project.year}</span>
-        <span className="text-ink">
-          <StatusLabel status={project.status} />
-        </span>
-      </div>
+    <article
+      aria-labelledby={`project-${project.slug}`}
+      className="border-t border-ink pt-6 pb-20 sm:pb-28"
+    >
+      <Reveal y={28} className="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+        <div className={`lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
+          <p className="font-mono text-xs text-muted">
+            <span className="text-accent">{String(index + 1).padStart(2, "0")}</span> · {project.year.replace(" season", "")}
+          </p>
+          <ProjectTitle project={project} className="mt-4 text-5xl sm:text-6xl" />
+          <p className="mt-5 text-lg leading-relaxed">{project.summary}</p>
+          <HighlightList items={project.highlights} limit={3} className="mt-6 text-muted" />
+          <TechList technologies={project.technologies} className="mt-6" />
+          <ProjectLinks project={project} className="mt-6" />
+        </div>
 
-      <h4 id={titleId} className="mt-6 max-w-3xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-        {project.details ? (
-          <Link href={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
-            {project.title}
-          </Link>
-        ) : (
-          project.title
-        )}
-      </h4>
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{project.summary}</p>
-
-      <div className="mt-8 overflow-hidden rounded-2xl">
-        {hero ? (
-          <ProjectImage image={hero} sizes="(min-width: 1152px) 1000px, 100vw" />
-        ) : heroSlot ? (
-          <ImagePlaceholder slug={project.slug} slot={heroSlot} />
-        ) : project.flow ? (
-          <SystemFlow flow={project.flow} />
-        ) : null}
-      </div>
-
-      <HighlightList items={project.highlights} columns={2} className="mt-8" />
-      <TechList technologies={project.technologies} className="mt-8" />
-      <ProjectLinks project={project} className="mt-6" />
+        <div className={`min-w-0 lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>
+          <div className="border border-rule-strong bg-surface transition-colors duration-200 hover:border-accent">
+            {hero ? (
+              <ProjectImage image={hero} sizes="(min-width: 1280px) 700px, (min-width: 1024px) 55vw, 100vw" />
+            ) : heroSlot ? (
+              <ImagePlaceholder slug={project.slug} slot={heroSlot} />
+            ) : project.flow ? (
+              <SystemFlow flow={project.flow} />
+            ) : null}
+          </div>
+        </div>
+      </Reveal>
     </article>
   );
 }
