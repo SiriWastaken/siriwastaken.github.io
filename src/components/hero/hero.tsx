@@ -13,7 +13,7 @@ export function Hero() {
         <Reveal delay={0.4} className="mt-12 grid gap-x-12 gap-y-14 lg:mt-16 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="max-w-xl text-xl leading-snug text-pretty sm:text-2xl">
-              I&apos;m Sri. I write code: For fun and to learn. A lot of my projects are... messy. A lot of them aren&apos;t fully functional. But, they&apos;re all made with blood, sweat, tears, and lots of AI tokens!
+              I&apos;m Sri. I write code: For fun and to learn. A lot of my projects are... messy. A lot of them aren&apos;t fully functional. But, they&apos;re all made with blood, sweat, tears, and just a few AI tokens!
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/#work" variant="primary">
