@@ -23,11 +23,11 @@ export function ProjectImage({
         sizes={sizes}
         placeholder="blur"
         loading={eager ? "eager" : "lazy"}
-        className="h-auto w-full"
+        className="h-auto w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover/card:scale-[1.02]"
         style={{ maxWidth: image.src.width }}
       />
       {image.caption ? (
-        <figcaption className="mt-3 font-mono text-xs text-muted">
+        <figcaption className="mt-3 text-xs text-muted">
           {image.caption}
         </figcaption>
       ) : null}

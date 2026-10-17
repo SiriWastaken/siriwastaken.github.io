@@ -8,7 +8,7 @@ const links = [
   { id: "work", label: "Work" },
   { id: "stack", label: "Stack" },
   { id: "about", label: "About" },
-  { id: "contact", label: "Say hi", wideOnly: true },
+  { id: "contact", label: "Say hi" },
 ];
 
 /** Main nav. A single underline slides to whichever section is under the middle of the viewport. */
@@ -32,12 +32,9 @@ export function NavLinks() {
 
   return (
     <nav aria-label="Main">
-      <ul className="flex items-center gap-5 font-mono text-xs tracking-wide uppercase sm:gap-7">
+      <ul className="flex items-center gap-5 text-xs sm:gap-7">
         {links.map((link) => (
-          <li
-            key={link.id}
-            className={link.wideOnly ? "hidden sm:block" : undefined}
-          >
+          <li key={link.id}>
             <Link
               href={`/#${link.id}`}
               aria-current={active === link.id ? "location" : undefined}

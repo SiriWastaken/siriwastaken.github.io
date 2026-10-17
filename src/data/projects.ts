@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "Strategy tools built on the synced data: multi-team comparison, a third-robot selector, a drag-and-drop picklist, and a match predictor that picked the winning alliance 84.7% of the time at the 2026 Ontario Provincial Championships (Technology Division).",
       "Team lists, match schedules, and rankings pulled from The Blue Alliance API.",
     ],
-    sourceNote: "Proprietery repo",
+    sourceNote: "Proprietary repo",
     flow: {
       caption: "How a match gets from a scout's tablet to the strategy team",
       steps: [

@@ -24,7 +24,7 @@ src/
 ├── components/           One folder per section (hero, projects, stack, frc, about, contact…)
 │   └── ui/               Shared primitives: Container, Section, links, MetaList
 ├── data/                 Everything the site says
-│   ├── site.ts           Name, description, GitHub/LinkedIn URLs
+│   ├── site.ts           Name, description, GitHub/DMOJ URLs
 │   ├── projects.ts       All projects: summaries, highlights, case-study content
 │   ├── stack.ts          Technologies, icons, and where each was used
 └── assets/projects/      Images, one folder per project slug

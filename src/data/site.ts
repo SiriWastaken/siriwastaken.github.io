@@ -3,11 +3,11 @@ export const site = {
   shortName: "Sri",
   title: "SiriWasTaken (Sri) - Student Developer",
   description:
-    "Student developer building full-stack software, robotics tools, and systems that solve real problems. Projects include scouting and design tools for FRC Team 610, a performance benchmark, and developer tooling.",
+    "Student developer building full-stack software, robotics tools, and developer tooling. Projects include scouting and design tools for FRC Team 610 and a performance benchmark.",
   githubUrl: "https://github.com/SiriWastaken",
   dmojUrl: "https://dmoj.ca/user/SiriWastaken",
-  // TODO: add your LinkedIn profile URL. The LinkedIn button stays hidden until this is set.
-  linkedinUrl: undefined as string | undefined,
+  // TODO: add the contact email. The mailto row stays hidden until this is set.
+  email: undefined as string | undefined,
 } as const;
 
 /**

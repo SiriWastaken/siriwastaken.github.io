@@ -5,17 +5,17 @@ import { TechTile } from "./tech-icon";
 
 export function StackSection() {
   return (
-    <Section id="stack" index="02" title="What I use">
-      <div className="border-b border-rule-strong">
-        {stack.map((group) => (
+    <Section id="stack" title="What I use" tone="surface">
+      <div className="">
+        {stack.map((group, groupIndex) => (
           <Reveal key={group.label} y={12}>
-            <div className="grid gap-x-10 gap-y-6 border-t border-rule-strong py-8 lg:grid-cols-12">
+            <div className="grid gap-x-10 gap-y-6 border-t border-rule-strong py-10 lg:grid-cols-12">
               <h3 className="kicker lg:col-span-3">{group.label}</h3>
               <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:col-span-9">
                 {group.items.map((tech) => (
                   <li key={tech.name}>
                     <a href={tech.url} target="_blank" rel="noreferrer" className="group flex items-start gap-4">
-                      <TechTile icon={tech.icon} />
+                      <TechTile icon={tech.icon} tint={groupIndex} />
                       <div>
                         <p className="font-medium transition-colors group-hover:text-accent">
                           {tech.name}

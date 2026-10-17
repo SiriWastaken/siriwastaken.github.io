@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {hasTopImage || project.flow ? (
             <div className="pb-14">
-              <div className="overflow-hidden border border-rule-strong bg-surface">
+              <div className="overflow-hidden rounded-3xl bg-surface">
                 {hero ? (
                   <ProjectImage
                     image={hero}
@@ -123,7 +123,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 key={diagram.alt}
                 image={diagram}
                 sizes="(min-width: 1152px) 820px, (min-width: 768px) 75vw, 100vw"
-                className="mt-8 border border-rule-strong"
+                className="mt-8 overflow-hidden rounded-2xl"
               />
             ))}
           </DetailSection>
@@ -132,7 +132,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className="grid max-w-3xl gap-8">
               {details.challenges.map((challenge) => (
                 <div key={challenge.title}>
-                  <h3 className="font-display text-2xl tracking-tight">
+                  <h3 className="font-display text-2xl">
                     {challenge.title}
                   </h3>
                   <p className="mt-2 text-lg leading-relaxed text-muted">
@@ -165,13 +165,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <nav
             aria-label="More projects"
-            className="border-t border-ink py-14 sm:py-20"
+            className="mb-16 rounded-3xl bg-surface px-6 py-14 text-center sm:mb-24 sm:py-20"
           >
-            <p className="font-mono text-xs text-muted">Next up</p>
+            <p className="text-sm text-muted">Next up</p>
             <div className="mt-3">
               <Link
                 href={`/projects/${next.slug}`}
-                className="group inline-flex items-baseline gap-4 font-display text-4xl tracking-tight text-balance transition-colors hover:text-accent sm:text-6xl"
+                className="group inline-flex items-baseline gap-4 font-display text-4xl text-balance transition-colors hover:text-accent sm:text-6xl"
               >
                 {next.title}
                 <span

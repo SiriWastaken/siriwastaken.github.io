@@ -8,38 +8,31 @@ import { ProjectTitle } from "./project-title";
 import { SystemFlow } from "./system-flow";
 import { TechList } from "./tech-list";
 
-type FlagshipProps = { project: Project; index: number };
-
-/** The largest treatment: copy on one side, the product on the other, flipping sides down the page. */
-export function FlagshipProject({ project, index }: FlagshipProps) {
+/** The largest treatment: a centered headline, the product at full width, then the details beneath it. */
+export function FlagshipProject({ project }: { project: Project }) {
   const { hero } = getProjectAssets(project.slug);
-  const flip = index % 2 === 1;
 
   return (
-    <article
-      aria-labelledby={`project-${project.slug}`}
-      className="border-t border-ink pt-6 pb-20 sm:pb-28"
-    >
-      <Reveal y={28} className="grid gap-x-12 gap-y-8 lg:grid-cols-12">
-        <div className={`lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
-          <p className="font-mono text-xs text-muted">
-            <span className="text-accent">{String(index + 1).padStart(2, "0")}</span> · {project.year.replace(" season", "")}
-          </p>
-          <ProjectTitle project={project} className="mt-4 text-4xl sm:text-5xl" />
-          <p className="mt-5 text-lg leading-relaxed">{project.summary}</p>
-          <HighlightList items={project.highlights} limit={2} className="mt-6 text-muted" />
-          <TechList technologies={project.technologies} className="mt-6" />
-          <ProjectLinks project={project} className="mt-6" />
+    <article aria-labelledby={`project-${project.slug}`} className="pb-24 sm:pb-36">
+      <Reveal y={28}>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm text-muted">{project.year.replace(" season", "")}</p>
+          <ProjectTitle project={project} className="mt-3 text-4xl sm:text-6xl" />
+          <p className="mt-5 text-xl leading-snug text-muted text-pretty sm:text-2xl">{project.summary}</p>
+          <ProjectLinks project={project} className="mt-6 justify-center" />
         </div>
 
-        <div className={`min-w-0 lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>
-          <div className="border border-rule-strong bg-surface transition-colors duration-200 hover:border-accent">
-            {hero ? (
-              <ProjectImage image={hero} sizes="(min-width: 1280px) 700px, (min-width: 1024px) 55vw, 100vw" />
-            ) : project.flow ? (
-              <SystemFlow flow={project.flow} />
-            ) : null}
-          </div>
+        <div className="group/card mt-12 overflow-hidden rounded-3xl bg-surface sm:mt-16">
+          {hero ? (
+            <ProjectImage image={hero} sizes="(min-width: 1280px) 1100px, 100vw" className="mx-auto" />
+          ) : project.flow ? (
+            <SystemFlow flow={project.flow} />
+          ) : null}
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-4xl gap-8 md:grid-cols-2">
+          <HighlightList items={project.highlights} limit={2} className="text-muted" />
+          <TechList technologies={project.technologies} className="content-start md:justify-end" />
         </div>
       </Reveal>
     </article>

@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Project } from "@/data/types";
 
 const linkClass =
-  "group inline-flex items-center gap-1.5 border-b border-rule-strong pb-0.5 font-mono text-sm transition-colors duration-150 hover:border-accent hover:text-accent";
-const primaryClass = `${linkClass} border-accent text-accent`;
+  "group inline-flex items-center gap-1.5 text-base text-accent transition-opacity duration-150 hover:underline hover:underline-offset-4";
+const primaryClass = `${linkClass} font-medium`;
 
 function Arrow({ external = false }: { external?: boolean }) {
   return (
@@ -42,7 +42,7 @@ export function ProjectLinks({ project, showDetails = true, className = "" }: Pr
         </a>
       ) : null}
       {!project.githubUrl && project.sourceNote ? (
-        <span className="font-mono text-xs text-muted">{project.sourceNote.toLowerCase()}</span>
+        <span className="text-sm text-muted">{project.sourceNote}</span>
       ) : null}
     </div>
   );

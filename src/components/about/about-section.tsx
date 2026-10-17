@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/section";
 
 export function AboutSection() {
   return (
-    <Section id="about" index="03" title="About me">
+    <Section id="about" title="About me">
       <Reveal className="grid lg:grid-cols-12">
         <div className="max-w-3xl space-y-6 lg:col-span-7 lg:col-start-6">
           <p className="text-lg leading-relaxed">
@@ -12,9 +12,9 @@ export function AboutSection() {
             Native on our team&apos;s scouting tablets, Next.js for the web.
           </p>
           <p className="text-lg leading-relaxed text-muted">
-            I like software that has to survive something messy: tablets syncing through a network box we built
-            ourselves, scouts who need to enter data faster, a benchmark that has to back up its own numbers. Next up is
-            my first open-source contribution, starting with The Blue Alliance.
+            I like software that has to cope with messy conditions, like tablets syncing through a network box we
+            built ourselves, or a benchmark that has to back up its own numbers. Next up is my first open-source
+            contribution, starting with The Blue Alliance.
           </p>
         </div>
       </Reveal>

@@ -7,7 +7,7 @@ import type { ProjectFlow } from "@/data/types";
  */
 export function SystemFlow({ flow }: { flow: ProjectFlow }) {
   return (
-    <figure className="bg-surface px-5 py-6 sm:px-8 sm:py-8">
+    <figure className="px-5 py-6 sm:px-8 sm:py-8">
       <ol className="grid md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
         {flow.steps.map((step, index) => (
           <li
@@ -16,9 +16,9 @@ export function SystemFlow({ flow }: { flow: ProjectFlow }) {
           >
             <span
               aria-hidden="true"
-              className="absolute top-1 -left-[4px] size-[7px] bg-accent md:-top-[4px] md:left-0"
+              className="absolute top-1 -left-[4px] size-[7px] rounded-full bg-accent md:-top-[4px] md:left-0"
             />
-            <span className="font-mono text-[11px] text-muted">
+            <span className="text-xs text-muted">
               {String(index + 1).padStart(2, "0")}
             </span>
             <p className="mt-1 text-sm font-medium">{step.label}</p>
@@ -32,7 +32,7 @@ export function SystemFlow({ flow }: { flow: ProjectFlow }) {
           <span className="text-muted">: {flow.aside.detail}</span>
         </p>
       ) : null}
-      <figcaption className="mt-5 font-mono text-xs text-muted">
+      <figcaption className="mt-5 text-xs text-muted">
         {flow.caption}
       </figcaption>
     </figure>

@@ -1,27 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, JetBrains_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { SiteFooter } from "@/components/contact/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getSiteUrl, site } from "@/data/site";
 import "./globals.css";
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-});
-
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
@@ -47,8 +30,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f2eee4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f0e0c" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
   ],
 };
 
@@ -60,12 +43,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${bricolage.variable} ${jetbrains.variable} antialiased`}
+      className="antialiased"
     >
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:font-mono focus:text-sm focus:text-on-accent"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:rounded-full focus:text-sm focus:text-on-accent"
         >
           Skip to content
         </a>

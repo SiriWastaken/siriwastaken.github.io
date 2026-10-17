@@ -16,8 +16,8 @@ export default function OpengraphImage() {
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "72px 80px",
-        background: "#0f0e0c",
-        color: "#f1ece0",
+        background: "#000000",
+        color: "#f5f5f7",
         fontFamily: "sans-serif",
       }}
     >
@@ -27,7 +27,7 @@ export default function OpengraphImage() {
           alignItems: "center",
           gap: 16,
           fontSize: 24,
-          color: "#a39e90",
+          color: "#a1a1a6",
         }}
       >
         <div
@@ -35,13 +35,13 @@ export default function OpengraphImage() {
             width: 12,
             height: 12,
             borderRadius: 6,
-            background: "#ff6a2b",
+            background: "#2997ff",
           }}
         />
         Sri
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ fontSize: 92, fontWeight: 700, letterSpacing: -3 }}>
+        <div style={{ fontSize: 92, fontWeight: 600, letterSpacing: -3 }}>
           {site.name}
         </div>
         <div
@@ -50,13 +50,13 @@ export default function OpengraphImage() {
             fontSize: 36,
             lineHeight: 1.3,
             maxWidth: 940,
-            color: "#d9d3c2",
+            color: "#a1a1a6",
           }}
         >
           Scouting apps, dashboards, and CLI tools for a robotics team.
         </div>
       </div>
-      <div style={{ display: "flex", height: 4, width: 160, background: "#ff6a2b" }} />
+      <div style={{ display: "flex", height: 4, width: 160, background: "#2997ff" }} />
     </div>,
     size,
   );

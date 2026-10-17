@@ -10,12 +10,12 @@ export function WorkSection() {
   const additional = getProjectsByTier("additional");
 
   return (
-    <Section id="work" index="01" title="Stuff I've built">
+    <Section id="work" title="Stuff I've built">
       <div>
-        {flagship.map((project, i) => (
-          <FlagshipProject key={project.slug} project={project} index={i} />
+        {flagship.map((project) => (
+          <FlagshipProject key={project.slug} project={project} />
         ))}
-        <div className="grid gap-x-14 gap-y-16 pb-24 md:grid-cols-2">
+        <div className="grid gap-6 pb-24 md:grid-cols-2">
           {featured.map((project) => (
             <FeaturedProject key={project.slug} project={project} />
           ))}

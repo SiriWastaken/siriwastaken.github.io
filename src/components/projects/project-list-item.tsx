@@ -11,10 +11,10 @@ export function ProjectListItem({ project }: { project: Project }) {
       <Reveal y={10}>
         <article
           aria-labelledby={`project-${project.slug}`}
-          className="grid gap-x-12 gap-y-4 border-t border-rule-strong py-8 lg:grid-cols-12"
+          className="grid gap-x-12 gap-y-4 border-t border-rule-strong py-10 lg:grid-cols-12"
         >
           <div className="lg:col-span-5">
-            <p className="font-mono text-xs text-muted">{project.year}</p>
+            <p className="text-sm text-muted">{project.year}</p>
             <ProjectTitle project={project} className="mt-3 text-2xl sm:text-3xl" />
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
