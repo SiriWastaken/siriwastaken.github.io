@@ -8,6 +8,11 @@ export const site = {
   dmojUrl: "https://dmoj.ca/user/SiriWastaken",
   // TODO: add the contact email. The mailto row stays hidden until this is set.
   email: undefined as string | undefined,
+  // Shared by the About section and the About window on the desk.
+  about: [
+    "I'm a high-school student who likes building things and figuring out how they work. I started with Java, took ICS3U, and built a Swing game for the Grade 11 final. Now it's mostly TypeScript: React Native on our team's scouting tablets, Next.js for the web.",
+    "I like software that has to cope with messy conditions, like tablets syncing through a network box we built ourselves, or a benchmark that has to back up its own numbers. Next up is my first open-source contribution, starting with The Blue Alliance.",
+  ],
 } as const;
 
 /**

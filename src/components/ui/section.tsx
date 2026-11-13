@@ -20,11 +20,11 @@ export function Section({ id, title, tone, children }: SectionProps) {
     >
       <Container>
         <Reveal y={12}>
-          <h2 id={headingId} className="text-center font-display text-5xl leading-none text-balance sm:text-7xl">
+          <h2 id={headingId} className="font-display text-4xl leading-none text-balance sm:text-6xl">
             {title}
           </h2>
         </Reveal>
-        <div className="mt-12 sm:mt-20">{children}</div>
+        <div className="mt-10 sm:mt-16">{children}</div>
       </Container>
     </section>
   );

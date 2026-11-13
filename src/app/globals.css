@@ -114,3 +114,19 @@ body {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* The 3D desk replaces the page while it runs; the plain page is the fallback underneath. */
+.scene-root {
+  display: none;
+}
+html.scene3d {
+  overflow: hidden;
+}
+html.scene3d .scene-root {
+  display: block;
+}
+html.scene3d body > header,
+html.scene3d body > footer,
+html.scene3d #main > :not([data-scene]) {
+  visibility: hidden;
+}

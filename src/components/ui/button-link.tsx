@@ -12,7 +12,7 @@ const styles = {
 };
 
 export function ButtonLink({ href, children, variant = "secondary" }: ButtonLinkProps) {
-  const className = `inline-flex h-11 items-center rounded-full px-6 text-base font-medium transition-[opacity,background-color,transform] duration-200 active:scale-[0.98] ${styles[variant]}`;
+  const className = `inline-flex h-11 items-center rounded-md px-5 text-base font-medium transition-[opacity,background-color] duration-150 ${styles[variant]}`;
 
   if (href.startsWith("http")) {
     return (

@@ -1,0 +1,248 @@
+/* ---------- Terminal ---------- */
+.term {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px 12px 14px;
+  background: #0a120d;
+  color: #9be8a8;
+  font: 13px/1.4 "Monaco", "Menlo", "SF Mono", "Courier New", monospace;
+  cursor: text;
+  overscroll-behavior: contain;
+}
+.term pre {
+  margin: 0;
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.term a {
+  color: #d6f5dc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.err {
+  color: #f2b27a;
+}
+.dim {
+  color: #5f9a6e;
+}
+.promptRow {
+  display: flex;
+  gap: 0.6ch;
+}
+.prompt {
+  flex: none;
+  color: #d6f5dc;
+  white-space: pre;
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  caret-color: #d6f5dc;
+  caret-shape: block;
+}
+
+/* ---------- Storage Explorer ---------- */
+.xroot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  grid-template-rows: auto minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+  background: #04060a;
+  color: #cfe6ee;
+  font: 12px/1.4 "Monaco", "Menlo", "SF Mono", "Courier New", monospace;
+}
+.xroot[data-compact="true"] {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(220px, 1fr) auto;
+}
+.xbar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: #0a1219;
+  border-bottom: 1px solid #1d2b35;
+}
+.xbtn {
+  padding: 2px 8px;
+  border: 1px solid #2b4150;
+  background: #0f1a23;
+  color: #cfe6ee;
+  font: inherit;
+  cursor: pointer;
+}
+.xbtn:hover:not(:disabled) {
+  border-color: #f2a93b;
+  color: #f2a93b;
+}
+.xbtn:disabled {
+  color: #4a6572;
+  cursor: default;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin-left: 6px;
+  color: #6d8a99;
+}
+.crumbs button {
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: #cfe6ee;
+  font: inherit;
+  cursor: pointer;
+}
+.crumbs button:hover {
+  color: #f2a93b;
+}
+.view {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+.view canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  cursor: grab;
+  touch-action: none;
+}
+.labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.labels :global(.xl) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1px 5px;
+  border: 1px solid #2b4150;
+  background: #070b10;
+  color: #cfe6ee;
+  font: 11px/1.3 "Monaco", "Menlo", "SF Mono", "Courier New", monospace;
+  white-space: nowrap;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.labels :global(.xl-dir) {
+  border-color: #3b5a6c;
+}
+.labels :global(.xl-hot),
+.labels :global(.xl:focus-visible) {
+  border-color: #8fd694;
+  color: #fff;
+  outline: none;
+}
+.labels :global(.xl-focus) {
+  border-color: #f2a93b;
+  background: #f2a93b;
+  color: #04060a;
+}
+.panel {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 2;
+  width: min(330px, calc(100% - 16px));
+  max-height: 55%;
+  padding: 8px 10px;
+  overflow: auto;
+  background: #0a1219;
+  border: 1px solid #2b4150;
+  border-top: 2px solid #f2a93b;
+}
+.panel h3 {
+  margin: 0;
+  color: #f2a93b;
+  font: 700 12px/1.3 inherit;
+}
+.panel p {
+  margin: 4px 0 0;
+  color: #9fb7c4;
+}
+.panel pre {
+  margin: 6px 0 0;
+  max-height: 120px;
+  overflow: auto;
+  font: inherit;
+  color: #cfe6ee;
+  white-space: pre-wrap;
+}
+.panel .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.panel a {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #f2a93b;
+  color: #f2a93b;
+  text-decoration: none;
+}
+.side {
+  min-height: 0;
+  overflow: auto;
+  border-left: 1px solid #1d2b35;
+  background: #0a1219;
+}
+.xroot[data-compact="true"] .side {
+  border-left: 0;
+  border-top: 1px solid #1d2b35;
+  max-height: 180px;
+}
+.side h4 {
+  margin: 0;
+  padding: 6px 8px;
+  color: #6d8a99;
+  font: 11px/1.3 inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.side button {
+  display: block;
+  width: 100%;
+  padding: 4px 8px;
+  border: 0;
+  border-top: 1px solid #121d26;
+  background: none;
+  color: #cfe6ee;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.side button:hover,
+.side button[aria-current="true"] {
+  background: #14212c;
+  color: #f2a93b;
+}
+.kind {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 7px;
+  background: var(--k);
+}
+.nogl {
+  padding: 16px;
+  color: #f2b27a;
+}

@@ -3,39 +3,40 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { TextLink } from "@/components/ui/text-link";
 import { site } from "@/data/site";
-import { HeroHeadline } from "./hero-headline";
 
-const now = [
-  { label: "Learning Swift and SwiftUI", dot: "bg-pop-orange" },
-  { label: "Building Scouting Web 2027", dot: "bg-pop-pink" },
-  { label: "Heading into open source", dot: "bg-pop-green" },
-];
+const now = ["Learning Swift and SwiftUI", "Building Scouting Web 2027", "Heading into open source"];
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-heading" className="pt-20 pb-24 text-center sm:pt-32 sm:pb-36">
+    <section aria-labelledby="hero-heading" className="pt-20 pb-20 sm:pt-32 sm:pb-28">
       <Container>
-        <HeroHeadline />
-        <Reveal delay={0.4} className="mx-auto mt-8 max-w-2xl">
+        <h1 id="hero-heading" className="font-display max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.02] text-balance">
+          Still learning.
+          <br />
+          <span className="text-accent">Building as I go.</span>
+        </h1>
+        <Reveal delay={0.1} className="mt-8 max-w-2xl">
           <p className="text-xl leading-snug text-muted text-pretty sm:text-2xl">
             I&apos;m Sri, a high-school student. I learn by building: scouting tools for our robotics team, a database
             benchmark, and some developer tooling.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <ButtonLink href="/#work" variant="primary">
               See what I&apos;ve built
             </ButtonLink>
             <TextLink href={site.githubUrl}>GitHub</TextLink>
             <TextLink href={site.dmojUrl}>DMOJ</TextLink>
           </div>
-          <ul aria-label="Right now" className="mt-10 flex flex-wrap justify-center gap-3 text-sm">
-            {now.map((item) => (
-              <li key={item.label} className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2">
-                <span aria-hidden="true" className={`size-2 rounded-full ${item.dot}`} />
-                {item.label}
-              </li>
-            ))}
-          </ul>
+          <dl className="mt-12 grid max-w-xl gap-x-8 gap-y-1 border-t border-rule-strong pt-5 text-sm sm:grid-cols-[auto_1fr]">
+            <dt className="kicker">Right now</dt>
+            <dd>
+              <ul className="grid gap-1">
+                {now.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </dl>
         </Reveal>
       </Container>
     </section>

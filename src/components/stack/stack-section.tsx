@@ -14,7 +14,7 @@ export function StackSection() {
               <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:col-span-9">
                 {group.items.map((tech) => (
                   <li key={tech.name}>
-                    <a href={tech.url} target="_blank" rel="noreferrer" className="group flex items-start gap-4">
+                    <a href={tech.url} target="_blank" rel="noreferrer" className="group flex items-start gap-3">
                       <TechTile icon={tech.icon} tint={groupIndex} />
                       <div>
                         <p className="font-medium transition-colors group-hover:text-accent">

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { MotionProvider } from "@/components/motion/motion-provider";
-import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { SiteFooter } from "@/components/contact/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getSiteUrl, site } from "@/data/site";
@@ -48,12 +47,11 @@ export default function RootLayout({
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:rounded-full focus:text-sm focus:text-on-accent"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:rounded-md focus:text-sm focus:text-on-accent"
         >
           Skip to content
         </a>
         <MotionProvider>
-          <ScrollProgress />
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}

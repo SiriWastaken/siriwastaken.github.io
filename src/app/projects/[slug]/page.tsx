@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {hasTopImage || project.flow ? (
             <div className="pb-14">
-              <div className="overflow-hidden rounded-3xl bg-surface">
+              <div className="overflow-hidden rounded-md border border-rule bg-surface">
                 {hero ? (
                   <ProjectImage
                     image={hero}
@@ -123,7 +123,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 key={diagram.alt}
                 image={diagram}
                 sizes="(min-width: 1152px) 820px, (min-width: 768px) 75vw, 100vw"
-                className="mt-8 overflow-hidden rounded-2xl"
+                className="mt-8 overflow-hidden rounded-md border border-rule"
               />
             ))}
           </DetailSection>
@@ -165,7 +165,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <nav
             aria-label="More projects"
-            className="mb-16 rounded-3xl bg-surface px-6 py-14 text-center sm:mb-24 sm:py-20"
+            className="mb-16 border-t border-rule-strong py-14 sm:mb-24 sm:py-20"
           >
             <p className="text-sm text-muted">Next up</p>
             <div className="mt-3">
