@@ -8,8 +8,6 @@ const links = [
   { label: "DMOJ", href: site.dmojUrl },
 ];
 
-const hovers = ["hover:text-pop-green", "hover:text-pop-purple", "hover:text-pop-orange"];
-
 export function SiteFooter() {
   return (
     <footer id="contact" aria-labelledby="contact-heading" className="bg-surface pt-20 pb-10 sm:pt-32">
@@ -18,16 +16,16 @@ export function SiteFooter() {
           id="contact-heading"
           className="font-display text-6xl leading-none sm:text-8xl"
         >
-          Say hi<span className="text-pop-pink">.</span>
+          Say hi<span className="text-accent">.</span>
         </h2>
         <ul className="mt-10 border-b border-rule-strong">
-          {links.map((link, i) => (
+          {links.map((link) => (
             <li key={link.label} className="border-t border-rule-strong">
               <a
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className={`group flex items-baseline justify-between py-4 font-display text-2xl transition-colors sm:text-3xl ${hovers[i % hovers.length]}`}
+                className="group flex items-baseline justify-between py-4 font-display text-2xl transition-colors hover:text-accent sm:text-3xl"
               >
                 <span>
                   {link.label}

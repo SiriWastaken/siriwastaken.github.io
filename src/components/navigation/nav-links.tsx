@@ -32,7 +32,7 @@ export function NavLinks() {
 
   return (
     <nav aria-label="Main">
-      <ul className="flex items-center gap-5 text-xs sm:gap-7">
+      <ul className="flex items-center gap-5 text-sm sm:gap-7">
         {links.map((link) => (
           <li key={link.id}>
             <Link

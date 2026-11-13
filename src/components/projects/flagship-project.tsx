@@ -15,14 +15,14 @@ export function FlagshipProject({ project }: { project: Project }) {
   return (
     <article aria-labelledby={`project-${project.slug}`} className="pb-24 sm:pb-36">
       <Reveal y={28}>
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="max-w-3xl">
           <p className="text-sm text-muted">{project.year.replace(" season", "")}</p>
           <ProjectTitle project={project} className="mt-3 text-4xl sm:text-6xl" />
           <p className="mt-5 text-xl leading-snug text-muted text-pretty sm:text-2xl">{project.summary}</p>
-          <ProjectLinks project={project} className="mt-6 justify-center" />
+          <ProjectLinks project={project} className="mt-6" />
         </div>
 
-        <div className="group/card mt-12 overflow-hidden rounded-3xl bg-surface sm:mt-16">
+        <div className="mt-10 overflow-hidden rounded-md border border-rule bg-surface sm:mt-12">
           {hero ? (
             <ProjectImage image={hero} sizes="(min-width: 1280px) 1100px, 100vw" className="mx-auto" />
           ) : project.flow ? (
@@ -30,9 +30,9 @@ export function FlagshipProject({ project }: { project: Project }) {
           ) : null}
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-4xl gap-8 md:grid-cols-2">
+        <div className="mt-8 grid max-w-4xl gap-8 md:grid-cols-2">
           <HighlightList items={project.highlights} limit={2} className="text-muted" />
-          <TechList technologies={project.technologies} className="content-start md:justify-end" />
+          <TechList technologies={project.technologies} className="content-start" />
         </div>
       </Reveal>
     </article>

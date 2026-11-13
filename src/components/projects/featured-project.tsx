@@ -15,14 +15,14 @@ export function FeaturedProject({ project }: { project: Project }) {
     <Reveal className="h-full">
       <article
         aria-labelledby={`project-${project.slug}`}
-        className="flex h-full flex-col rounded-3xl bg-surface p-6 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:hover:-translate-y-1 sm:p-8"
+        className="flex h-full flex-col border-t border-rule-strong pt-6"
       >
         <p className="text-sm text-muted">{project.year}</p>
         <ProjectTitle project={project} className="mt-4 text-3xl sm:text-4xl" />
         <p className="mt-4 leading-relaxed text-muted">{project.summary}</p>
 
         {hero ? (
-          <div className="mt-6 group/card overflow-hidden rounded-2xl">
+          <div className="mt-6 overflow-hidden rounded-md border border-rule">
             <ProjectImage image={hero} sizes="(min-width: 1024px) 540px, 100vw" />
           </div>
         ) : null}

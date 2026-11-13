@@ -1,0 +1,469 @@
+/*
+ * The desktop on the iMac. A made-up late-1990s "Platinum" style: grey beveled windows,
+ * pinstriped title bars, a flat menu bar, icons down the sides. Laid out at 1024 x 768 and
+ * mapped onto the 3D screen; on phones, once zoomed, it is resized to the viewport.
+ */
+.os {
+  --plat: #dcdcdc;
+  --hi: #fff;
+  --lo: #8a8a8a;
+  --ink: #111;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 1024px;
+  height: 768px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  border-radius: 34px / 30px;
+  background-color: #5d7d9b;
+  font: 12px/1.3 "Geneva", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.os[data-compact="true"] {
+  border-radius: 0;
+}
+.os[data-ready="true"] {
+  opacity: 1;
+}
+.os[data-live="true"] {
+  pointer-events: auto;
+}
+.os[data-live="true"] {
+  /* Fine patterns only when the screen is big enough not to shimmer. */
+  background-image: radial-gradient(#7595b3 1px, transparent 1.2px), radial-gradient(#4d6c88 1px, transparent 1.2px);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+.os::after {
+  /* the tube: a dark vignette and a glare */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.07) 0 30%, transparent 30.2%),
+    radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.38) 100%);
+}
+.os[data-live="true"]::after {
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.07) 0 30%, transparent 30.2%),
+    radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.38) 100%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 3px);
+}
+
+/* ---------- menu bar ---------- */
+.menubar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 600;
+  display: flex;
+  align-items: stretch;
+  height: 22px;
+  background: linear-gradient(#f2f2f2, var(--plat));
+  border-bottom: 1px solid #000;
+  box-shadow: inset 0 1px 0 var(--hi);
+}
+.menuWrap {
+  position: relative;
+}
+.menuBtn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 11px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: default;
+}
+.menuBtn[data-open="true"],
+.menuBtn:hover {
+  background: #2b3e6b;
+  color: #fff;
+}
+.menuBtn svg {
+  width: 15px;
+  height: 15px;
+}
+.menuList {
+  position: absolute;
+  z-index: 700;
+  min-width: 190px;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+  background: var(--plat);
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+.menuWrap > .menuList {
+  top: 22px;
+  left: 0;
+}
+.menuItem {
+  display: block;
+  width: 100%;
+  padding: 3px 20px 3px 18px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+.menuItem:hover:not(:disabled),
+.menuItem:focus-visible {
+  background: #2b3e6b;
+  color: #fff;
+  outline: none;
+}
+.menuItem:disabled {
+  color: #8a8a8a;
+}
+.sep {
+  height: 1px;
+  margin: 3px 0;
+  background: #999;
+  box-shadow: 0 1px 0 var(--hi);
+}
+.appName {
+  min-width: 0;
+  margin-left: auto;
+  padding: 0 14px;
+  align-self: center;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.os[data-compact="true"] .appName {
+  display: none;
+}
+.exit {
+  align-self: center;
+  margin-left: auto;
+  white-space: nowrap;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: var(--plat);
+  box-shadow: inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--lo);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- desktop icons ---------- */
+.iconsLeft,
+.iconsRight {
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.iconsLeft {
+  left: 26px;
+}
+.iconsRight {
+  right: 26px;
+}
+.trashSlot {
+  position: absolute;
+  z-index: 1;
+  right: 26px;
+  bottom: 34px;
+}
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 92px;
+  padding: 2px;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+  cursor: default;
+}
+.icon svg {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.35));
+}
+.icon span {
+  padding: 0 4px;
+  background: rgba(0, 0, 0, 0.25);
+  line-height: 1.25;
+}
+.icon:hover span,
+.icon:focus-visible span {
+  background: #000;
+  color: #fff;
+}
+.icon:focus-visible {
+  outline: 1px dotted #fff;
+  outline-offset: 1px;
+}
+
+/* ---------- start-up ---------- */
+.boot {
+  position: absolute;
+  inset: 0;
+  z-index: 800;
+  display: grid;
+  place-items: center;
+  background: #c9c9c9;
+  animation: bootOut 0.4s ease 1.3s forwards;
+}
+.bootBox {
+  width: 280px;
+  padding: 16px 18px 18px;
+  background: var(--plat);
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 var(--hi), inset -1px -1px 0 var(--lo), 2px 2px 0 rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+}
+.bootBox svg {
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 10px;
+}
+.bootBar {
+  height: 12px;
+  margin-top: 10px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.bootBar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, #2b3e6b 0 6px, #46609a 6px 8px);
+  animation: bootFill 1.2s steps(14) forwards;
+}
+@keyframes bootFill {
+  to {
+    width: 100%;
+  }
+}
+@keyframes bootOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boot {
+    display: none;
+  }
+}
+
+/* ---------- windows ---------- */
+.win {
+  /* Windows are always light, even at night: restate the page tokens. */
+  --bg: #fff;
+  --surface: #f2f2f2;
+  --ink: #111;
+  --muted: #555;
+  --rule: #d4d4d4;
+  --rule-strong: #bdbdbd;
+  --accent: #0b3a8a;
+  --on-accent: #fff;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: var(--w, 460px);
+  height: var(--h, auto);
+  max-height: calc(100% - 52px);
+  background: #dcdcdc;
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #8a8a8a, 3px 3px 0 rgba(0, 0, 0, 0.45);
+  color: #111;
+  font: 12.5px/1.45 "Geneva", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  outline: none;
+}
+.winZoomed {
+  inset: 22px 0 0 0 !important;
+  width: auto;
+  height: auto;
+  max-height: none;
+}
+.winFull {
+  inset: 22px 0 0 0;
+  width: auto;
+  height: auto;
+  max-height: none;
+  z-index: 100;
+  font-size: 14px;
+}
+.winCollapsed {
+  height: auto;
+}
+.titlebar {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 6px;
+  height: 22px;
+  padding: 0 5px;
+  background: repeating-linear-gradient(0deg, #fff 0 1px, #a9a9a9 1px 2px);
+  background-clip: content-box;
+  background-origin: content-box;
+  border-bottom: 1px solid #000;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.titlebar:active {
+  cursor: grabbing;
+}
+.winInactive .titlebar {
+  background: #dcdcdc;
+}
+.winFull .titlebar {
+  height: 38px;
+  cursor: default;
+}
+.title {
+  flex: none;
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 0 8px;
+  overflow: hidden;
+  background: #dcdcdc;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.winInactive .title {
+  color: #777;
+}
+.box {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid #000;
+  background: #dcdcdc;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #8a8a8a;
+  cursor: pointer;
+}
+.box::before {
+  /* bigger tap target than the drawn box */
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+.winFull .box {
+  width: 24px;
+  height: 24px;
+}
+.box:active {
+  background: #8a8a8a;
+}
+.winInactive .box {
+  border-color: #888;
+  box-shadow: none;
+}
+.boxZoom::after {
+  content: "";
+  position: absolute;
+  inset: 2px 4px 4px 2px;
+  border: 1px solid #000;
+}
+.boxShade::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 5px;
+  height: 2px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.winBody {
+  flex: 1;
+  min-height: 0;
+  margin: 3px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 12px 14px 16px;
+  background: #fff;
+  border: 1px solid #777;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  box-shadow: inset 1px 1px 0 #444;
+}
+.winFlush .winBody {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.winFull .winBody {
+  padding: 16px 18px 26px;
+}
+.winFull.winFlush .winBody {
+  padding: 0;
+}
+
+/* ---------- context menu ---------- */
+.ctxShield {
+  position: absolute;
+  inset: 0;
+  z-index: 650;
+}
+.ctx {
+  position: absolute;
+  z-index: 700;
+}
+
+/* ---------- trash window ---------- */
+.trashRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-top: 1px solid #d4d4d4;
+}
+.trashRow:first-of-type {
+  border-top: 0;
+}
+.push {
+  padding: 2px 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background: #dcdcdc;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #8a8a8a;
+  font: inherit;
+  cursor: pointer;
+}
+.push:active {
+  background: #bbb;
+}
+.push:disabled {
+  color: #888;
+  cursor: default;
+}
